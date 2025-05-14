@@ -1,36 +1,28 @@
 <!DOCTYPE html>
 <html lang="ru">
-<load src="src/html/_head.html" title="Sintec Motor Oil" />
+<load src="src/html/_head.html" title="Sintec ExtraLife" />
 
 <body>
   <div class="wrapper">
     <main class="page">
       <section class="hero">
-        <div class="hero__bg">
-          <img src="img/hero/hero_bg.webp" srcset="img/hero/hero_bg.webp 1x, img/hero/hero_bg@2x.webp 2x" alt="hero_bg"
-            class="_md5dn">
-
-          <img src="img/hero/hero_bg-1320.webp" srcset="img/hero/hero_bg-1320.webp 1x, img/hero/hero_bg-1320@2x.webp 2x"
-            alt="hero_bg" class="_mmd5dn _md3dn">
-
-          <!-- Для мобильной версии -->
-          <img src="img/hero/hero_bg_mob.webp" srcset="img/hero/hero_bg_mob.webp 1x, img/hero/hero_bg_mob@2x.webp 2x"
-            alt="hero_bg_mob" class="_mmd3dn">
-        </div>
-        <div class="hero__wrapper">
-          <div class="hero__container">
-            <h1 class="hero__title">
-              Sintec Premium
-            </h1>
-            <strong class="hero__text">Премиальная линейка моторных масел</strong>
-            <div class="hero__slogan-box">
-              <strong class="hero__slogan">
-                с технологией <br class="_mmd3dn"> UltraSynth
-              </strong>
+        <div class="hero__container">
+          <div class="hero__bg">
+            <video autoplay muted playsinline poster="img/hero/poster.webp">
+              <source src="video/hero_video.mp4" type="video/mp4">
+              <source src="video/hero_video.webm" type="video/webm">
+            </video>
+            <div class="hero__content">
+              <h1 class="hero__title">
+                Sintec ExtraLife
+              </h1>
+              <strong class="hero__text">Для автомобилей с пробегом более</strong>
             </div>
+          </div>
+          <div class="hero__wrapper">
             <include src="_ozonbtn.html" locals='{
-                  "className": "hero__button"
-                }'></include>
+                    "className": "hero__button"
+                  }'></include>
             <div class="hero__bottles">
               <img class="_md3dn" src="img/hero/hero_bottle.webp"
                 srcset="img/hero/hero_bottle.webp 1x, img/hero/hero_bottle.webp 2x, img/hero/hero_bottle.webp 3x"
@@ -41,29 +33,15 @@
             </div>
           </div>
         </div>
-        <div class="hero__car">
-          <img class="car" src="img/hero/car_hero.webp"
-            srcset="img/hero/car_hero.webp 1x, img/hero/car_hero@2x.webp 2x, img/hero/car_hero@3x.webp 3x" alt="car">
-          <div class="headlights">
-            <img class="headlights__left _md4dn" src="img/hero/light_left.webp" alt="light_left">
-            <img class="headlights__left _mmd4dn" src="img/hero/light_left_mobile.webp" alt="light_left">
-            <img class="headlights__right _md4dn" src="img/hero/light_right.webp" alt="light_right">
-            <img class="headlights__right _mmd4dn" src="img/hero/light_right_mobile.webp" alt="light_right">
-          </div>
-        </div>
+
       </section>
 
       <section class="ow">
         <div class="ow__container">
           <h2 class="ow__title">
-            <span class="_gold">PREMIUM 9000&nbsp;&mdash;</span> флагманская линейка в&nbsp;портфеле бренда SINTEC
+            ДВИГАТЕЛЬ ТРЕБУЕТ СПЕЦИАЛЬНОГО УХОДА, ЕСЛИ:
           </h2>
-          <p class="ow__text">
-            В&nbsp;рецептурах используются исключительно современные импортные пакеты присадок и&nbsp;комплекс
-            высококачественных,
-            полностью синтетических базовых масел&nbsp;&mdash;
-            <span class="_red">HC, PAO, AN.</span>
-          </p>
+
         </div>
       </section>
 
