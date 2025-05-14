@@ -12,6 +12,8 @@
 
 .hero {
 
+  height: mixins.toRem(583);
+
   &__container {
     max-width: mixins.toRem(1350);
     padding-right: 0;
