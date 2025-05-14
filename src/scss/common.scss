@@ -8,6 +8,7 @@ img, video {
   width: auto;
   height: auto;
   max-width: 100%;
+  display: block;
 }
 
 [hidden] {
@@ -87,9 +88,9 @@ img, video {
   background-color: var(--ozon);
   font-weight: 500;
   color: var(--white);
-  font-size: mixins.toRem(22);
-  line-height: math.div(28.6, 22);
-  padding: mixins.toRem(15) mixins.toRem(42);
+  font-size: mixins.toRem(20);
+  line-height: 130%;
+  padding: mixins.toRem(15) mixins.toRem(26);
   display: flex;
   justify-content: center;
   align-items: center;
