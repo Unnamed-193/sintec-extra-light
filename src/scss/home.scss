@@ -146,7 +146,7 @@
     align-items: center;
     text-align: center;
     padding-top: mixins.toRem(120);
-    padding-bottom: mixins.toRem(130);
+    padding-bottom: mixins.toRem(118.8);
 
 
     @media (max-width:mixins.toEm(variables.$mobile)) {
@@ -193,7 +193,7 @@
     background: var(--grey-light);
     border-radius: mixins.toRem(15) mixins.toRem(15) 0 0;
     flex: 1 1 50%;
-    padding: 50px 68px 29px;
+    padding: 50px 0 29px;
 
     &-title {
       line-height: 130%;
@@ -243,10 +243,95 @@
     line-height: 130%;
     text-align: center;
     color: var(--white);
-    max-width: mixins.toRem(882); 
+    max-width: mixins.toRem(882);
     margin: 0 auto;
     @include mixins.adaptiveValue("font-size", 22, 16);
   }
+}
+
+.line {
+  background-color: var(--white);
+
+  &__container {
+    max-width: mixins.toRem(1350);
+    padding-bottom: mixins.toRem(130);
+    text-align: center;
+  }
+
+  &__title {
+    font-weight: 400;
+    line-height: 120%;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: var(--black);
+
+    @include mixins.adaptiveValue("font-size", 45, 32);
+    @include mixins.adaptiveValue("margin-bottom", 11, 11);
+  }
+
+  &__subtitle {
+    font-weight: 400;
+    line-height: 130%;
+    letter-spacing: -0.02em;
+    color: var(--grey-dark);
+    max-width: mixins.toRem(554);
+    margin: 0 auto;
+
+    @include mixins.adaptiveValue("font-size", 24, 16);
+    @include mixins.adaptiveValue("margin-bottom", 50, 11);
+  }
+
+  &__list-item {
+    position: relative;
+    width: 603px;
+    height: 153px;
+  }
+
+  &__rectangle {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 98px;
+    width: 505px;
+    height: 113px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--grey-light);
+    border-radius: 15px;
+    padding-left: 85px;
+
+    @include mixins.adaptiveValue("border-radius", 15, 10);
+  }
+
+  &__circle-box {
+    position: absolute;
+    width: 153px;
+    height: 153px;
+    border-radius: 50%;
+    background-color: white;
+    z-index: 20;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  &__circle {
+    position: absolute;
+    width: 113px;
+    height: 113px;
+    background-color: var(--grey-light);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &__text {
+    font-weight: 400;
+    line-height: 130%;
+    color: #121212;
+    text-align: left;
+
+    @include mixins.adaptiveValue("font-size", 22, 16);
+  }
+
 }
 
 //==========================================================================================
@@ -734,780 +819,6 @@
     fill: var(--white);
     stroke: url(#paint1_linear_361_1508);
     vector-effect: non-scaling-stroke;
-  }
-}
-
-//==========================================================================================
-.tech {
-  position: relative;
-  display: flex;
-  --animDuration: calc(var(--globalAnimDuration) * 0.55);
-
-  @media (max-width:mixins.toEm(variables.$tablet)) {
-    background: var(--grey-light);
-    border-radius: mixins.toRem(15);
-  }
-
-
-  &__bgs {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-
-    @media (min-width:mixins.toEm(variables.$tablet)) {
-      display: grid;
-      grid-template-columns: 1fr 1.02fr;
-    }
-  }
-
-  &__leftbg {
-    img {
-      height: 100%;
-      border-radius: mixins.toRem(20);
-      object-fit: cover;
-      object-position: center;
-    }
-
-    @media (min-width:mixins.toEm(variables.$tablet)) {
-      img {
-        max-width: none;
-        width: mixins.percent(1370, 952);
-      }
-    }
-
-    @media (max-width:mixins.toEm(variables.$tablet)) {
-      img {
-        max-width: none;
-      }
-
-      position: relative;
-      z-index: 2;
-      border-radius: mixins.toRem(15);
-      overflow: hidden;
-      height: mixins.toRem(540);
-    }
-
-    @media (max-width:mixins.toEm(variables.$mobileSmall)) {
-      img {
-        width: 100%;
-      }
-    }
-  }
-
-  &__rightbg {
-    position: relative;
-    display: flex;
-    justify-content: flex-end;
-    background: linear-gradient(154deg, #e5ceac 0%, #b58e5c 100%);
-
-    @media (min-width:mixins.toEm(variables.$tablet)) {
-      border-radius: mixins.toRem(20);
-    }
-
-    @media (max-width:mixins.toEm(variables.$tablet)) {
-      border-radius: 0 0 mixins.toRem(15) mixins.toRem(15);
-      margin-top: mixins.toRem(-16);
-      height: mixins.toRem(612);
-    }
-  }
-
-  &__container {
-    flex: 1 1 auto;
-    position: relative;
-    z-index: 2;
-    max-width: mixins.toRem(1350);
-    display: grid;
-    justify-content: space-between;
-    align-items: center;
-
-    @include mixins.adaptiveValue("column-gap", 289, 250, 1320, 992);
-    @include mixins.adaptiveValue("padding-top", 56, 40);
-
-    @media (min-width:mixins.toEm(variables.$tablet)) {
-      padding-bottom: mixins.toRem(69);
-      grid-template-columns: repeat(2, 1fr);
-      // grid-template-rows: 378px;
-    }
-
-    @media (max-width:mixins.toEm(variables.$tablet)) {
-      padding-bottom: mixins.toRem(87);
-
-    }
-  }
-
-  &__left {
-    align-self: stretch;
-
-    @media (min-width:mixins.toEm(variables.$tablet)) {
-      max-width: mixins.toRem(427);
-    }
-
-    @media (max-width:mixins.toEm(variables.$tablet)) {
-      &:not(:last-child) {
-        @include mixins.adaptiveValue('margin-bottom', 99, 40)
-      }
-
-    }
-  }
-
-  &__middle {
-    z-index: 2;
-
-    @media (min-width:mixins.toEm(variables.$tablet)) {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      translate: -57% -50%;
-    }
-
-    @media (max-width:mixins.toEm(variables.$tablet)) {
-      z-index: 3;
-    }
-
-    @include mixins.adaptiveValue("height", 399, 308);
-
-    img {
-      &:not(.tech__light):not(.tech__sqare) {
-        height: 100%;
-        position: relative;
-        z-index: 2;
-      }
-    }
-
-    @media (max-width:mixins.toEm(variables.$tablet)) {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      &:not(:last-child) {
-        margin-bottom: mixins.toRem(30);
-      }
-    }
-  }
-
-  &__light {
-    position: absolute;
-    height: 100%;
-    top: 50%;
-    left: 0;
-    translate: 0 -50%;
-  }
-
-  &__sqare {
-    position: absolute;
-    left: 62.7%;
-    top: 50%;
-    translate: 0% -48%;
-    height: mixins.toRem(203);
-  }
-
-  &__right {
-    margin-left: auto;
-    position: relative;
-    z-index: 2;
-
-    @media (min-width:mixins.toEm(variables.$tablet)) {
-      max-width: mixins.toRem(455);
-    }
-  }
-}
-
-.left-tech {
-  display: flex;
-  flex-direction: column;
-
-  &__head {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: mixins.toRem(30);
-    @include mixins.adaptiveValue("gap", 25, 10);
-  }
-
-  &__title {
-    text-transform: uppercase;
-    line-height: math.div(54, 45);
-    opacity: 0;
-    translate: 0 mixins.toRem(30);
-    letter-spacing: -0.02em;
-
-    .loaded & {
-      transition:
-        translate var(--globalAnimDuration) var(--globalTransitionTiming),
-        opacity var(--globalAnimDuration) var(--globalTransitionTiming);
-
-      transition-delay: calc(var(--globalAnimDuration) / 2);
-    }
-
-    .loaded ._watcher-view & {
-      opacity: 1;
-      translate: 0 0;
-    }
-
-    @include mixins.adaptiveValue("font-size", 45, 32);
-  }
-
-  &__logo {
-    opacity: 0;
-    translate: 0 mixins.toRem(30);
-    margin-bottom: mixins.toRem(60);
-
-    .loaded & {
-      transition:
-        translate var(--globalAnimDuration) var(--globalTransitionTiming),
-        opacity var(--globalAnimDuration) var(--globalTransitionTiming);
-
-      transition-delay: calc(var(--animDuration) * (var(--max_index, 2) + 1.5));
-    }
-
-    .loaded ._watcher-view & {
-      opacity: 1;
-      translate: 0 0;
-    }
-
-    @media (max-width: mixins.toEm(variables.$tablet)) {
-      margin-bottom: 0;
-    }
-  }
-
-  &__button {
-    width: max-content;
-    opacity: 0;
-    translate: 0 mixins.toRem(30);
-    @include mixins.adaptiveValue("font-size", 16, 14, 1920, 1024);
-
-    @media (max-width: mixins.toEm(1024)) {
-      font-size: mixins.toRem(16);
-    }
-
-    .loaded & {
-      transition:
-        translate var(--animDuration) var(--globalTransitionTiming),
-        opacity var(--animDuration) var(--globalTransitionTiming);
-
-      @media (min-width:mixins.toEm(variables.$tablet)) {
-        transition-delay: calc(var(--animDuration) * (var(--max_index, 2) + 2.5));
-      }
-
-      @media (max-width:mixins.toEm(variables.$tablet)) {
-        width: 100%;
-        text-align: center;
-        transition-delay: var(--globalAnimDuration);
-      }
-    }
-
-    .loaded ._watcher-view & {
-      opacity: 1;
-      translate: 0 0;
-    }
-  }
-}
-
-.right-tech {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: mixins.toRem(80);
-
-  @media (max-width: mixins.toEm(variables.$laptop)) {
-    gap: mixins.toRem(48);
-  }
-
-  @media (max-width: mixins.toEm(variables.$tablet)) {
-    gap: mixins.toRem(30);
-  }
-
-  &__itemwrap {
-    position: relative;
-    // opacity: 0;
-    --pl: #{mixins.toRem(7)};
-
-    @include mixins.adaptiveValue("--img_width", 118, 94, 1920, 1320);
-    @include mixins.adaptiveValue("--pt", 13, 9);
-    @include mixins.adaptiveValue("--gap", 20, 10);
-
-
-    @media (max-width:mixins.toEm(variables.$tablet)) {
-      --pl: #{mixins.toRem(12)};
-
-      &::before {
-        content: '';
-        position: absolute;
-        bottom: 100%;
-        left: 50%;
-        width: mixins.toRem(2);
-        background-color: var(--gold);
-        z-index: -1;
-        padding-bottom: 0;
-
-        .loaded & {
-          transition:
-            padding var(--animDuration) var(--globalTransitionTiming);
-
-          transition-delay: calc(var(--animDuration) * (var(--index) + 2));
-        }
-
-        .loaded ._watcher-view & {
-          padding-bottom: mixins.toRem(100);
-        }
-      }
-    }
-  }
-
-  @media (max-width: mixins.toEm(variables.$tablet)) {
-    &__item-1 {
-      min-height: mixins.toRem(129);
-    }
-
-    &__item-2 {
-      min-height: mixins.toRem(169);
-    }
-  }
-
-  &__item {
-    color: var(--white);
-    display: flex;
-    align-items: center;
-    border-radius: calc(1px / 0);
-    border: mixins.toRem(2) solid var(--border-gold);
-    background-color: var(--dark-yellow);
-    width: 100%;
-    position: relative;
-    padding-top: 17px;
-    padding-bottom: 17px;
-    // height: calc(var(--img_width) + (var(--pt) * 2));
-
-    width: calc(var(--img_width) + (var(--pl) * 2));
-    scale: 0;
-
-    // @include mixins.adaptiveValue('min-height', 129, 169, 992);
-    @include mixins.adaptiveValue('border-radius', 100, 35, 992);
-
-
-    @media (min-width: mixins.toEm(variables.$tablet)) {
-      min-height: mixins.toRem(129);
-    }
-
-    @media (min-width: mixins.toEm(variables.$laptop)) {
-      min-height: mixins.toRem(144);
-    }
-
-    @media (max-width: mixins.toEm(374.98)) {
-      @include mixins.adaptiveValue('min-height', 169, 189, 375, 320);
-    }
-
-    .loaded & {
-      transition:
-        scale var(--animDuration) var(--globalTransitionTiming),
-        padding var(--animDuration) var(--globalTransitionTiming);
-
-      transition-delay: calc(var(--animDuration) * var(--index, 1)), calc(var(--animDuration) * (var(--index) + 1));
-    }
-
-    .loaded ._watcher-view & {
-      scale: 1;
-      padding-left: var(--width);
-    }
-  }
-
-  &__image {
-    position: absolute;
-    top: 50%;
-    left: var(--pl);
-    translate: 0 -50%;
-    z-index: 2;
-    scale: 0;
-
-    aspect-ratio: 1;
-    width: var(--img_width);
-
-    .loaded & {
-      transition:
-        scale var(--animDuration) var(--globalTransitionTiming);
-
-      transition-delay: calc((var(--animDuration) / 2) * var(--index, 1));
-    }
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-    }
-
-    .loaded ._watcher-view & {
-      scale: 1;
-    }
-  }
-
-  &__text-box {
-    translate: mixins.toRem(-30) -50%;
-    opacity: 0;
-    position: absolute;
-    top: 50%;
-    left: calc(var(--img_width) + var(--pl) + var(--gap));
-
-
-    @include mixins.adaptiveValue("font-size", 22, 18);
-
-    @media (max-width: mixins.toEm(375)) {
-      hyphens: auto;
-    }
-
-    .loaded & {
-      transition:
-        translate var(--animDuration) var(--globalTransitionTiming),
-        opacity var(--animDuration) var(--globalTransitionTiming);
-
-      transition-delay: calc(var(--animDuration) * (var(--index, 1) + 2));
-    }
-
-    .loaded ._watcher-view & {
-      translate: 0 -50%;
-      opacity: 1;
-    }
-  }
-
-  &__title {
-    font-weight: 500;
-    line-height: 120%;
-    text-transform: uppercase;
-    color: var(--white);
-
-    @include mixins.adaptiveValue("font-size", 18, 14, 1920, 1320);
-    @include mixins.adaptiveValue("margin-bottom", 8, 6);
-
-    @media (max-width:mixins.toEm(variables.$tablet)) {
-      font-size: mixins.toRem(16);
-    }
-  }
-
-  &__text {
-    font-weight: 300;
-    font-size: 16px;
-    line-height: 120%;
-    color: var(--white);
-    max-width: mixins.toRem(271);
-    width: 100%;
-
-    @include mixins.adaptiveValue("font-size", 16, 14, 1920, 1320);
-
-    @media (max-width:mixins.toEm(variables.$laptop)) {
-      max-width: mixins.toRem(230);
-    }
-
-    @media (max-width:mixins.toEm(variables.$tablet)) {
-      font-size: mixins.toRem(16);
-      max-width: max-content;
-    }
-  }
-}
-
-//==========================================================================================
-.easystart {
-  position: relative;
-  background-color: var(--white);
-
-  @media (max-width: mixins.toEm(1100)) {
-    background-color: var(--light);
-    border-radius: 0 0 mixins.toRem(15) mixins.toRem(15);
-  }
-
-  &__container {
-    max-width: mixins.toRem(1350);
-    display: grid;
-    align-items: flex-start;
-    padding-top: mixins.toRem(20);
-
-    padding-bottom: mixins.toRem(120);
-
-    @media (min-width: mixins.toEm(variables.$laptop)) {
-      grid-template-columns: 1fr mixins.toRem(370) 1fr;
-      gap: mixins.toRem(28);
-    }
-
-    @media (min-width: mixins.toEm(1100)) and (max-width: mixins.toEm(variables.$laptop)) {
-      grid-template-columns: 1fr mixins.toRem(296) 1fr;
-      gap: mixins.toRem(28);
-      padding-bottom: mixins.toRem(100);
-    }
-
-    @media (max-width: mixins.toEm(1100)) {
-      @include mixins.adaptiveValue("padding-bottom", 100, 57, 1100);
-    }
-  }
-
-  &__item {
-    opacity: 0;
-    translate: 0 mixins.toRem(30);
-    --icnsz: #{mixins.toRem(100)};
-    border-radius: mixins.toRem(10);
-    display: grid;
-    grid-template-columns: var(--icnsz) auto;
-    gap: mixins.toRem(20);
-    align-items: center;
-    line-height: math.div(26.4, 22);
-    padding: mixins.toRem(25) mixins.toRem(40) mixins.toRem(22);
-    font-size: mixins.toRem(22);
-
-    @media (min-width:mixins.toEm(1100)) {
-      background-color: var(--light);
-    }
-
-    @media (max-width: mixins.toEm(variables.$laptop)) {
-      font-size: mixins.toRem(18);
-      padding: mixins.toRem(20);
-      --icnsz: #{mixins.toRem(65)};
-    }
-
-    @media (max-width: mixins.toEm(1100)) {
-      --icnsz: #{mixins.toRem(60)};
-      background-color: var(--white);
-      row-gap: 0;
-      padding: mixins.toRem(15) mixins.toRem(10);
-
-
-      &:not(:last-child) {
-        margin-bottom: mixins.toRem(15);
-      }
-
-      &:last-child {
-        grid-template-rows: 1fr;
-      }
-    }
-
-    @media (max-width: mixins.toEm(variables.$mobile)) {
-      font-size: mixins.toRem(16);
-    }
-
-    .loaded & {
-      transition:
-        translate var(--globalAnimDuration) var(--globalTransitionTiming),
-        opacity var(--globalAnimDuration) var(--globalTransitionTiming);
-
-      transition-delay: calc(var(--globalAnimDuration) / 2);
-    }
-
-    .loaded ._watcher-view & {
-      opacity: 1;
-      translate: 0 0;
-    }
-  }
-
-  &__icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    svg {
-      width: 100%;
-      height: 100%;
-    }
-
-    @media (max-width: mixins.toEm(variables.$laptop)) {
-      width: mixins.toRem(70);
-    }
-
-    @media (max-width: mixins.toEm(1100)) {
-      grid-row: span 2;
-    }
-  }
-
-  &__name {
-    color: var(--red);
-    display: flex;
-
-    span {
-      hyphens: auto;
-    }
-
-    @media (max-width: mixins.toEm(1100)) {
-      margin-top: auto;
-    }
-  }
-
-  &__text {
-
-
-    @media (min-width:mixins.toEm(1100)) {
-      grid-column: span 2;
-    }
-
-    @media (max-width: mixins.toEm(1100)) {
-      color: var(--grey-dark);
-
-    }
-  }
-
-  &__graph {
-    position: relative;
-    opacity: 0;
-    -webkit-transform: translateY(30px);
-    transform: translateY(mixins.toRem(30));
-
-    @media (min-width:mixins.toEm(variables.$laptop)) {
-      margin-top: mixins.toRem(-55.5);
-    }
-
-    @media (max-width:mixins.toEm(variables.$laptop)) {
-      margin-top: mixins.toRem(-79.5);
-    }
-
-    @media (max-width: mixins.toEm(1100)) {
-      margin-bottom: mixins.toRem(30);
-    }
-
-    .loaded & {
-      -webkit-transition:
-        -webkit-transform var(--globalAnimDuration) var(--globalTransitionTiming),
-        opacity var(--globalAnimDuration) var(--globalTransitionTiming);
-      transition:
-        transform var(--globalAnimDuration) var(--globalTransitionTiming),
-        opacity var(--globalAnimDuration) var(--globalTransitionTiming);
-    }
-
-    i {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transform: translateZ(0);
-
-      @-webkit-keyframes draw {
-        to {
-          stroke-dashoffset: 0;
-        }
-      }
-
-      @keyframes draw {
-        to {
-          stroke-dashoffset: 0;
-        }
-      }
-
-      @-webkit-keyframes fadeIn {
-        to {
-          opacity: 1;
-        }
-      }
-
-      @keyframes fadeIn {
-        to {
-          opacity: 1;
-        }
-      }
-
-      svg {
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-
-        path[stroke^="url()"] {
-          -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
-          -webkit-transform: translateZ(0);
-          transform: translateZ(0);
-        }
-
-        // Анимация для красной полоски
-        .path-red-line {
-          stroke-width: 27.6302px;
-          stroke-dasharray: 300;
-          stroke-dashoffset: 300;
-          shape-rendering: geometricPrecision;
-          -webkit-transform: translate3d(0, 0, 0);
-          transform: translate3d(0, 0, 0);
-          will-change: transform;
-
-          ._watcher-view & {
-            -webkit-animation: draw 2s 0.5s ease-out forwards;
-            animation: draw 2s 0.5s ease-out forwards;
-          }
-        }
-
-        // Анимация для конечной точки
-        circle[cx="309.5"][cy="132.5"] {
-          opacity: 0;
-
-          // Анимация будет запускаться только при наличии класса _watcher-view
-          ._watcher-view & {
-            -webkit-animation: fadeIn 0.5s 1.5s forwards;
-            animation: fadeIn 0.5s 1.5s forwards;
-          }
-        }
-
-        @media(max-width: mixins.toEm(1100)) {
-          path {
-            fill: var(--grey-light);
-          }
-        }
-      }
-    }
-
-    h2 {
-      position: absolute;
-      left: 50%;
-      bottom: mixins.toRem(70);
-      -webkit-transform: translateX(-50%);
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      text-align: center;
-      line-height: math.div(22, 15);
-      font-size: mixins.toRem(22);
-
-      @include mixins.adaptiveValue("gap", 8, 5);
-
-      @media (max-width:mixins.toEm(variables.$laptop)) {
-        font-size: mixins.toRem(18);
-        bottom: mixins.toRem(85);
-      }
-
-      ._red {
-        color: var(--red);
-        line-height: math.div(63.57, 52.97);
-        font-weight: 500;
-
-        @include mixins.adaptiveValue("font-size", 50, 35, 1920, 1100);
-      }
-    }
-
-
-
-    @media (max-width: mixins.toEm(1100)) {
-      order: -1;
-      margin-top: mixins.toRem(-57);
-
-      svg {
-        width: mixins.toRem(270);
-        height: mixins.toRem(237);
-      }
-
-      ._fill {
-        &[fill] {
-          fill: var(--light);
-        }
-
-        &[stroke] {
-          stroke: var(--light);
-        }
-      }
-
-      h2 {
-        bottom: mixins.toRem(45);
-      }
-    }
-
-    .loaded ._watcher-view & {
-      opacity: 1;
-      -webkit-transform: translateY(0);
-      transform: translateY(0);
-    }
-
-    @media (max-width: mixins.toEm(variables.$tablet)) {
-      margin-top: mixins.toRem(-90);
-    }
   }
 }
 
