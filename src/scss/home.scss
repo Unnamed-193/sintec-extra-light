@@ -310,17 +310,24 @@
     border-radius: 50%;
     background-color: white;
     z-index: 20;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
 
   &__circle {
     position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 113px;
     height: 113px;
     background-color: var(--grey-light);
     border-radius: 50%;
     top: 50%;
     transform: translateY(-50%);
+    transition: box-shadow 0.4s ease;
+
+    &:hover {
+      box-shadow: 9px 10px 16px 0 rgba(13, 39, 80, 0.16), inset -7px -7px 8px 0 rgba(255, 255, 255, 0.64);
+    }
   }
 
   &__text {
