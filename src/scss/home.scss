@@ -281,10 +281,37 @@
     @include mixins.adaptiveValue("margin-bottom", 50, 11);
   }
 
+  &__content {
+    display: flex;
+    gap: 69px;
+  }
+
+  &__content>* {
+    // flex: 1 1 50%;
+  }
+
+  &__left {
+    display: flex;
+    align-items: end;
+  }
+
+  &__podium {
+    background: var(--green);
+    border-radius: 15px;
+    width: 646px;
+    height: 169px;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
   &__list-item {
     position: relative;
     width: 603px;
-    height: 153px;
+    height: 113px;
   }
 
   &__rectangle {
@@ -306,12 +333,14 @@
   &__circle-box {
     position: absolute;
     width: 153px;
-    height: 153px;
+    height: 136px;
+    top: 50%;
+    transform: translateY(-50%);
     border-radius: 50%;
     background-color: white;
-    z-index: 20;
+    z-index: 1;
   }
-
+  
   &__circle {
     position: absolute;
     display: flex;
@@ -1272,13 +1301,10 @@
 
   &__container {
     max-width: mixins.toRem(1350);
-    padding-top: mixins.toRem(70);
 
-    @include mixins.adaptiveValue("padding-bottom", 140, 90);
-
-    @media (max-width:mixins.toEm(variables.$mobile)) {
-      margin-top: mixins.toRem(190);
-    }
+    @include mixins.adaptiveValue("padding-bottom", 130, 100);
+    @include mixins.adaptiveValue("padding-top", 130, 100);
+   
   }
 
   &__title {
@@ -1286,12 +1312,11 @@
     translate: 0 mixins.toRem(30);
     text-transform: uppercase;
     line-height: math.div(60, 50);
+    color: #121212;
+    margin-bottom: mixins.toRem(40);
 
     @include mixins.adaptiveValue("font-size", 50, 32);
 
-    &:not(:last-child) {
-      margin-bottom: mixins.toRem(15);
-    }
 
     .loaded & {
       transition:
@@ -1413,12 +1438,13 @@
   }
 
   &__button {
-    font-size: mixins.toRem(14);
     padding: mixins.toRem(5) mixins.toRem(8);
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: mixins.toRem(63);
+
+    @include mixins.adaptiveValue("font-size", 16, 14);
 
     @media (max-width:mixins.toEm(variables.$laptop)) {
       min-height: mixins.toRem(46);
