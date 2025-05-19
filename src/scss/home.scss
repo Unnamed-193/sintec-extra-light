@@ -278,11 +278,12 @@
     margin: 0 auto;
 
     @include mixins.adaptiveValue("font-size", 24, 16);
-    @include mixins.adaptiveValue("margin-bottom", 50, 11);
+    @include mixins.adaptiveValue("margin-bottom", 43.6, 11);
   }
 
   &__content {
     display: flex;
+    align-items: flex-end;
     gap: 69px;
   }
 
