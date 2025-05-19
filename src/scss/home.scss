@@ -341,7 +341,7 @@
     background-color: white;
     z-index: 1;
   }
-  
+
   &__circle {
     position: absolute;
     display: flex;
@@ -1302,10 +1302,11 @@
 
   &__container {
     max-width: mixins.toRem(1350);
+    position: relative;
 
     @include mixins.adaptiveValue("padding-bottom", 130, 100);
     @include mixins.adaptiveValue("padding-top", 130, 100);
-   
+
   }
 
   &__title {
@@ -1331,20 +1332,30 @@
     }
   }
 
-  &__slider {
-    -webkit-overflow-scrolling: touch;
-  }
-
-  &__track {
-    overflow: visible;
-
-    &:not(:last-child) {
-      margin-bottom: mixins.toRem(15);
-    }
-  }
 
   &__list {
-    align-items: stretch;
+
+    @include mixins.adaptiveValue("column-gap", 20, 10);
+
+    @media (min-width:mixins.toEm(variables.$mobile)) {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width:mixins.toEm(variables.$tablet)) {
+      display: flex;
+      padding-bottom: mixins.toRem(5);
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      margin-right: mixins.toRem(-15);
+      padding-right: mixins.toRem(15);
+
+      &::-webkit-scrollbar {
+        height: mixins.toRem(3);
+        display: none;
+      }
+    }
   }
 
   &__slide {
@@ -1359,12 +1370,11 @@
     padding: mixins.toRem(20);
     // opacity: 0;
     // translate: 0 mixins.toRem(30);
+    min-width: 286px;
 
-    @include mixins.adaptiveValue("width", 427, 285);
-
-    @media (max-width:mixins.toEm(variables.$mobile)) {
-      padding-bottom: mixins.toRem(25);
-      gap: mixins.toRem(15);
+    @media (max-width:mixins.toEm(variables.$tablet)) {
+      // flex: 1 0 mixins.toRem(227);
+      scroll-snap-align: start;
     }
 
     // .loaded & {
@@ -1400,8 +1410,11 @@
       align-items: center;
     }
 
+    @media (max-width:mixins.toEm(1023.98)) {
+      display: block;
+    }
+
     span {
-      white-space: nowrap;
 
       &:last-child {
         color: #828080;

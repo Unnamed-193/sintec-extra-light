@@ -266,14 +266,14 @@ img, video {
   background-color: var(--scrollbar_bg);
   border-radius: mixins.toRem(9999999);
   overflow: hidden;
-  bottom: mixins.toRem(395);
+  bottom: mixins.toRem(0);
 
-  @media (min-width:mixins.toEm(variables.$mobile)) {
+  @media (min-width:mixins.toEm(variables.$tablet)) {
     display: none;
   }
 
   @media (max-width: mixins.toEm(374.98)) {
-    @include mixins.adaptiveValue('bottom', 395, 410, 374.98, 320);
+    // @include mixins.adaptiveValue('bottom', 395, 410, 374.98, 320);
   }
 
 
