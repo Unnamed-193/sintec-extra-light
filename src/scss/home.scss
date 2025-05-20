@@ -692,8 +692,8 @@
     max-width: mixins.toRem(1350);
     position: relative;
 
-    @include mixins.adaptiveValue("padding-bottom", 130, 100);
-    @include mixins.adaptiveValue("padding-top", 130, 100);
+    @include mixins.adaptiveValue("padding-top", 118.8, 100);
+    @include mixins.adaptiveValue("padding-bottom", 118.8, 100);
 
   }
 
@@ -702,8 +702,9 @@
     translate: 0 mixins.toRem(30);
     text-transform: uppercase;
     line-height: math.div(60, 50);
+    letter-spacing: -0.02em;
     color: #121212;
-    margin-bottom: mixins.toRem(40);
+    margin-bottom: mixins.toRem(27.2);
 
     @include mixins.adaptiveValue("font-size", 50, 32);
 
@@ -788,7 +789,7 @@
     display: flex;
     flex-direction: column;
     font-weight: 500;
-    line-height: math.div(30, 20);
+    line-height: 120%;
     text-transform: uppercase;
     opacity: 0;
     translate: 0 mixins.toRem(30);
@@ -827,16 +828,9 @@
 
   &__buttons {
     align-self: stretch;
-    display: grid;
     gap: mixins.toRem(10);
     text-align: center;
     margin-top: auto;
-
-    @media (min-width:mixins.toEm(variables.$laptop)) {
-      &:has(a:nth-child(2)) {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
   }
 
   &__button {
@@ -844,7 +838,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: mixins.toRem(63);
+    min-height: mixins.toRem(45);
 
     @include mixins.adaptiveValue("font-size", 16, 14);
 
@@ -916,7 +910,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-bottom: mixins.toRem(68);
+    padding-bottom: mixins.toRem(85.6);
     padding-left: mixins.toRem(20);
     padding-right: mixins.toRem(20);
 
