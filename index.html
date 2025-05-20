@@ -182,11 +182,56 @@
                   уплотнений, что особо актуально для автомобилей с пробегом более 150 000 км.
                 </p>
               </div>
-              <div class="components__right"></div>
+
+              <div class="components__right">
+                <video autoplay muted loop class="components__video" poster="img/components/poster.webp">
+                  <source src="video/components_video.mp4" type="video/mp4">
+                  <source src="video/components_video.webm" type="video/webm">
+                </video>
+                <div class="components__content">
+                  <h3 class="components__right-title">Специальный <br> кондиционер</h3>
+                  <p class="components__top-text components__top-text--black">
+                    восстанавливает эластичность<br> материалов резиновых уплотнений,<br> предотвращая протечки
+                  </p>
+                </div>
+              </div>
             </div>
+
             <div class="components__bottom">
-              <div class="components__bottom-item"></div>
-              <div class="components__bottom-item"></div>
+              <div class="components__bottom-item">
+                <picture>
+                  <source media="(max-width: 768px)"
+                    srcset="img/components/item_1_mobile.webp 1x, img/components/item_1_mobile@2x.webp 2x, img/components/item_1_mobile@3x.webp 3x">
+                  <img class="components__bottom-item-img" src="img/components/item_1.webp"
+                    srcset="img/components/item_1.webp 1x, img/components/item_1@2x.webp 2x, img/components/item_1@3x.webp 3x"
+                    alt="item_1">
+                </picture>
+                <div class="components__bottom-item-box">
+                  <strong class="components__bottom-item-title">
+                    на 25% больше<br> моющих присадок*
+                  </strong>
+                  <p class="components__bottom-item-text">
+                    Защищают от образования отложений
+                  </p>
+                </div>
+              </div>
+              <div class="components__bottom-item">
+                <picture>
+                  <source media="(max-width: 768px)"
+                    srcset="img/components/item_2_mobile.webp 1x, img/components/item_2_mobile@2x.webp 2x, img/components/item_2_mobile@3x.webp 3x">
+                  <img class="components__bottom-item-img" src="img/components/item_2.webp"
+                    srcset="img/components/item_2.webp 1x, img/components/item_2@2x.webp 2x, img/components/item_2@3x.webp 3x"
+                    alt="item_2">
+                </picture>
+                <div class="components__bottom-item-box">
+                  <strong class="components__bottom-item-title">
+                    Органический молибден
+                  </strong>
+                  <p class="components__bottom-item-text">
+                    создает прочную масляную пленку, надежно защищая от износа
+                  </p>
+                </div>
+              </div>
             </div>
             <p class="components__disclaimer">*по сравнению с требованиями отраслевых стандартов</p>
           </div>
@@ -194,7 +239,45 @@
       </section>
 
 
-      
+      <section class="evidence" data-watch data-watch-once data-watch-threshold="0.1">
+        <div class="evidence__container">
+          <h2 class="evidence__title">
+            Доказано результатами эксплуатации масла на такси
+          </h2>
+          <p class="evidence__subtitle">
+            Надёжная защита двигателя на всем сроке эксплуатации
+          </p>
+
+          <div class="evidence__body">
+            <div class="evidence__left">
+              <div class="evidence__mileage">
+                <p class="evidence__km">&gt;100&nbsp;000&nbsp;км</p>
+                <span class="evidence__text">
+                  пробега<br> на&nbsp;масле SINTEC
+                </span>
+              </div>
+
+              <p class="evidence__result">
+                <span>Результат:</span><br>
+
+                высокие свойства<br> проб масла на&nbsp;всем периоде эксплуатации
+              </p>
+
+              <a href="#" data-popup="#evidencePopup_1" class="evidence__btn btn">Результаты теста</a>
+            </div>
+
+            <div class="evidence__right">
+              <picture>
+                <source media="(max-width: 768px)"
+                  srcset="img/evidence/evidence_mobile.webp 1x, img/evidence/evidence_mobile@2x.webp 2x, img/evidence/evidence_mobile@3x.webp 3x">
+                <img class="evidence__img" src="img/evidence/evidence.webp"
+                  srcset="img/evidence/evidence.webp 1x, img/evidence/evidence@2x.webp 2x, img/evidence/evidence@3x.webp 3x"
+                  alt="taxi">
+              </picture>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section class="assort" data-watch data-watch-once data-watch-threshold="0.3">
         <div class="assort__container">
@@ -280,29 +363,7 @@
     </div>
 	</div>
 </footer>
-    <div id="techPopup" aria-hidden="true" class="popup techPopup">
-  <div class="popup__wrapper">
-    <div class="popup__content">
-      <div class="popup__dragclose" data-dragclose=""></div>
-      <button data-close type="button" class="popup__close"></button>
-      <div class="popup__body" data-gallery>
-        <div class="popup__image">
-          <img data-src="img/popup_img_1.png" alt="popup_img_1">
-          <a href="img/popup_img_1.png">
-            <img data-src="img/icons/gallery_icon.svg" alt="">
-          </a>
-        </div>
-        <div class="popup__text">
-          <b>Вывод:</b> Действительно премиальное масло от отечественного завода. Все вязкостные параметры соблюдены
-          точно. Хороший современный пакет присадок. Экстремально низкая температура застывания -60С. ПАО синтетика в
-          составе. Чистое на золу и серу. Масло из разряда экономичных и тихих, судя по низкой вязкости и органическому
-          молибдену. Не сплоховали и высокотемпературные характеристики угар и термостабильность в норме. Очень хорошие
-          моющие/нейтрализующие свойства. В общем это универсальный солдат, хорош во всех областях применения
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+    
 <div id="evidencePopup_1" aria-hidden="true" class="popup techPopup">
   <div class="popup__wrapper">
     <div class="popup__content">
@@ -310,8 +371,8 @@
       <button data-close type="button" class="popup__close"></button>
       <div class="popup__body" data-gallery>
         <div class="popup__image">
-          <img data-src="img/popup_img_2.png" alt="popup_img_2">
-          <a href="img/popup_img_2.png">
+          <img data-src="img/popup_img_1.webp" alt="popup_img_2">
+          <a href="img/popup_img_1.webp">
             <img data-src="img/icons/gallery_icon.svg" alt="">
           </a>
         </div>
