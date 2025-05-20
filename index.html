@@ -164,11 +164,56 @@
                   уплотнений, что особо актуально для автомобилей с пробегом более 150 000 км.
                 </p>
               </div>
-              <div class="components__right"></div>
+
+              <div class="components__right">
+                <video autoplay muted loop class="components__video" poster="img/components/poster.webp">
+                  <source src="video/components_video.mp4" type="video/mp4">
+                  <source src="video/components_video.webm" type="video/webm">
+                </video>
+                <div class="components__content">
+                  <h3 class="components__right-title">Специальный <br> кондиционер</h3>
+                  <p class="components__top-text components__top-text--black">
+                    восстанавливает эластичность<br> материалов резиновых уплотнений,<br> предотвращая протечки
+                  </p>
+                </div>
+              </div>
             </div>
+
             <div class="components__bottom">
-              <div class="components__bottom-item"></div>
-              <div class="components__bottom-item"></div>
+              <div class="components__bottom-item">
+                <picture>
+                  <source media="(max-width: 768px)"
+                    srcset="img/components/item_1_mobile.webp 1x, img/components/item_1_mobile@2x.webp 2x, img/components/item_1_mobile@3x.webp 3x">
+                  <img class="components__bottom-item-img" src="img/components/item_1.webp"
+                    srcset="img/components/item_1.webp 1x, img/components/item_1@2x.webp 2x, img/components/item_1@3x.webp 3x"
+                    alt="item_1">
+                </picture>
+                <div class="components__bottom-item-box">
+                  <strong class="components__bottom-item-title">
+                    на 25% больше<br> моющих присадок*
+                  </strong>
+                  <p class="components__bottom-item-text">
+                    Защищают от образования отложений
+                  </p>
+                </div>
+              </div>
+              <div class="components__bottom-item">
+                <picture>
+                  <source media="(max-width: 768px)"
+                    srcset="img/components/item_2_mobile.webp 1x, img/components/item_2_mobile@2x.webp 2x, img/components/item_2_mobile@3x.webp 3x">
+                  <img class="components__bottom-item-img" src="img/components/item_2.webp"
+                    srcset="img/components/item_2.webp 1x, img/components/item_2@2x.webp 2x, img/components/item_2@3x.webp 3x"
+                    alt="item_2">
+                </picture>
+                <div class="components__bottom-item-box">
+                  <strong class="components__bottom-item-title">
+                    Органический молибден
+                  </strong>
+                  <p class="components__bottom-item-text">
+                    создает прочную масляную пленку, надежно защищая от износа
+                  </p>
+                </div>
+              </div>
             </div>
             <p class="components__disclaimer">*по сравнению с требованиями отраслевых стандартов</p>
           </div>
@@ -176,91 +221,45 @@
       </section>
 
 
-      <!-- <section class="evidence" data-watch data-watch-once data-watch-threshold="0.1">
+      <section class="evidence" data-watch data-watch-once data-watch-threshold="0.1">
         <div class="evidence__container">
-          <div class="evidence__title">
-            <h2>УСПЕШНЫЕ РЕЗУЛЬТАТЫ ТЕСТОВ</h2>
-          </div>
+          <h2 class="evidence__title">
+            Доказано результатами эксплуатации масла на такси
+          </h2>
+          <p class="evidence__subtitle">
+            Надёжная защита двигателя на всем сроке эксплуатации
+          </p>
+
           <div class="evidence__body">
-            <div class="evidence__item item-evidence item-evidence-1">
-              <div class="item-evidence__count">
-                01
+            <div class="evidence__left">
+              <div class="evidence__mileage">
+                <p class="evidence__km">&gt;100&nbsp;000&nbsp;км</p>
+                <span class="evidence__text">
+                  пробега<br> на&nbsp;масле SINTEC
+                </span>
               </div>
-              <div class="item-evidence__box">
-                <div class="item-evidence__content">
-                  <div class="item-evidence__head">
-                    <h2 class="item-evidence__title">На такси</h2>
-                  </div>
-                  <div class="item-evidence__text">
-                    <p><b>Результат:</b>Высокие свойства проб масла на&nbsp;всем периоде эксплуатации</p>
-                    <a href="#" data-popup="#evidencePopup_2" class="btn">Результаты теста</a>
-                  </div>
-                </div>
-                <div class="item-evidence__image">
-                  <img data-src="img/evidence/evidence_1.webp"
-                    srcset="img/evidence/evidence_1.webp 1x, img/evidence/evidence_1@2x.webp 2x, img/evidence/evidence_1@3x.webp 3x"
-                    alt="item-evidence_1" class="_md4dn">
-                  <img data-src="img/evidence/evidence_1_mob.webp"
-                    srcset="img/evidence/evidence_1_mob.webp 1x, img/evidence/evidence_1_mob@2x.webp 2x, img/evidence/evidence_1_mob@3x.webp 3x"
-                    alt="item-evidence_1" class="_mmd4dn">
-                </div>
-              </div>
+
+              <p class="evidence__result">
+                <span>Результат:</span><br>
+
+                высокие свойства<br> проб масла на&nbsp;всем периоде эксплуатации
+              </p>
+
+              <a href="#" data-popup="#evidencePopup_1" class="evidence__btn btn">Результаты теста</a>
             </div>
 
-            <div class="evidence__item item-evidence item-evidence-2">
-              <div class="item-evidence__count">
-                02
-              </div>
-              <div class="item-evidence__box">
-                <div class="item-evidence__content">
-                  <div class="item-evidence__head">
-                    <h2 class="item-evidence__title">На китайских авто</h2>
-                  </div>
-                  <div class="item-evidence__text">
-                    <p><b>Результат:</b>Высокие свойства проб масла на&nbsp;всем периоде эксплуатации</p>
-                    <a href="#" data-popup="#evidencePopup_1" class="btn">Результаты теста</a>
-                  </div>
-                </div>
-                <div class="item-evidence__image">
-                  <img data-src="img/evidence/evidence_2.webp"
-                    srcset="img/evidence/evidence_2.webp 1x, img/evidence/evidence_2@2x.webp 2x, img/evidence/evidence_2@3x.webp 3x"
-                    alt="item-evidence_1" class="_md4dn">
-                  <img data-src="img/evidence/evidence_2_mob.webp"
-                    srcset="img/evidence/evidence_2_mob.webp 1x, img/evidence/evidence_2_mob@2x.webp 2x, img/evidence/evidence_2_mob@3x.webp 3x"
-                    alt="item-evidence_1" class="_mmd4dn">
-                </div>
-              </div>
+            <div class="evidence__right">
+              <picture>
+                <source media="(max-width: 768px)"
+                  srcset="img/evidence/evidence_mobile.webp 1x, img/evidence/evidence_mobile@2x.webp 2x, img/evidence/evidence_mobile@3x.webp 3x">
+                <img class="evidence__img" src="img/evidence/evidence.webp"
+                  srcset="img/evidence/evidence.webp 1x, img/evidence/evidence@2x.webp 2x, img/evidence/evidence@3x.webp 3x"
+                  alt="taxi">
+              </picture>
             </div>
-
-            <div class="evidence__item item-evidence item-evidence-3">
-              <div class="item-evidence__count">
-                03
-              </div>
-              <div class="item-evidence__box">
-                <div class="item-evidence__content">
-                  <div class="item-evidence__head">
-                    <h2 class="item-evidence__title">ОТ НЕЗАВИСИМЫХ ЭКСПЕРТОВ OIL.CLUB</h2>
-                  </div>
-                  <div class="item-evidence__text">
-                    <p><b>Результат:</b> Все показатели в норме</p>
-                    <a href="#" data-popup="#techPopup" class="btn">Результаты теста</a>
-                  </div>
-                </div>
-                <div class="item-evidence__image">
-                  <img data-src="img/evidence/evidence_3.webp"
-                    srcset="img/evidence/evidence_3.webp 1x, img/evidence/evidence_3@2x.webp 2x, img/evidence/evidence_3@3x.webp 3x"
-                    alt="item-evidence_1" class="_md4dn">
-                  <img data-src="img/evidence/evidence_3_mob.webp"
-                    srcset="img/evidence/evidence_3_mob.webp 1x, img/evidence/evidence_3_mob@2x.webp 2x, img/evidence/evidence_3_mob@3x.webp 3x"
-                    alt="item-evidence_1" class="_mmd4dn">
-                </div>
-              </div>
-            </div>
-
-
           </div>
         </div>
-      </section> -->
+      </section>
 
       <section class="assort" data-watch data-watch-once data-watch-threshold="0.3">
         <div class="assort__container">
