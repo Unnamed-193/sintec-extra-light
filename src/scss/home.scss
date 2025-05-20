@@ -230,7 +230,32 @@
     @include mixins.adaptiveValue("margin-bottom", 32, 60);
   }
 
-  &__count {}
+  &__counter-list {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__counter-list-item {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    font-weight: 500;
+    font-size: 50px;
+    text-align: center;
+    color: var(--grey-dark);
+
+    &:not(:last-child)::after {
+      content: '';
+      display: inline-block;
+      margin-left: 10px;
+      height: 50px;
+      width: 2px;
+      background: linear-gradient(180deg, rgba(95, 100, 113, 0) 0%, #5f6471 54.51%, rgba(95, 100, 113, 0) 100%);
+    }
+  }
+
 
   &__row {
     border-radius: 0 0 15px 15px;
@@ -414,12 +439,14 @@
     display: flex;
     min-height: 297px;
     justify-content: space-between;
+    position: relative;
   }
 
   &__top>* {
     flex: 0 1 597px;
     border-radius: mixins.toRem(20);
   }
+
 
   &__left {
     background: linear-gradient(168deg, #056370 42%, #eff1f3 100.00%);
@@ -562,6 +589,35 @@
   }
 }
 
+.middle {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  background-color: white;
+  top: 0;
+  left: 50%;
+  width: 304px;
+  height: 304px;
+  transform: translateX(-50%);
+  z-index: 100;
+
+  &__circle {
+    transform-origin: center;
+    animation: circle-rotate 15s linear  infinite  ;
+  }
+
+  @keyframes circle-rotate{
+    from {
+      rotate: 0;
+    }
+    to {
+      rotate: 360deg;
+    }
+  }
+
+}
 //==========================================================================================
 .evidence {
   background: var(--grey-light);
