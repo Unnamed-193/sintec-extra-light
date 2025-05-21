@@ -142,6 +142,7 @@ function updateVideoSource() {
 
   const isMobile = window.innerWidth <= 480;
   const basePath = isMobile ? 'video/hero_video_mobile' : 'video/hero_video';
+  const poster = isMobile ? 'img/hero/poster_mobile.webp' : 'img/hero/poster.webp';
   const cacheBuster = `?t=${Date.now()}`;
 
   const newSources = `
@@ -150,6 +151,7 @@ function updateVideoSource() {
   `;
 
   if (video.innerHTML.trim() !== newSources.trim()) {
+    video.poster = poster;
     video.innerHTML = newSources;
     video.load();
     
@@ -169,4 +171,113 @@ window.addEventListener('resize', () => {
 
 // Запуск при загрузке и когда DOM готов
 document.addEventListener('DOMContentLoaded', updateVideoSource);
-window.addEventListener('load', updateVideoSource);
+
+document.addEventListener('DOMContentLoaded', function() {
+  const slider = document.querySelector('.ow__items');
+  const indicators = document.querySelectorAll('.ow__indicator');
+  let currentSlide = 0;
+  let isDragging = false;
+  let startPosX = 0;
+  let currentTranslate = 0;
+  let prevTranslate = 0;
+  const slideCount = document.querySelectorAll('.ow__item').length;
+  
+  // Инициализация слайдера
+  function initSlider() {
+    slider.addEventListener('touchstart', touchStart);
+    slider.addEventListener('touchend', touchEnd);
+    slider.addEventListener('touchmove', touchMove);
+    
+    // Для мыши/тачпада
+    slider.addEventListener('mousedown', touchStart);
+    slider.addEventListener('mouseup', touchEnd);
+    slider.addEventListener('mouseleave', touchEnd);
+    slider.addEventListener('mousemove', touchMove);
+    
+    // Остановка автопереключения при взаимодействии
+    slider.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
+    slider.addEventListener('mouseleave', () => {
+      autoSlideInterval = setInterval(nextSlide, 5000);
+    });
+  }
+  
+  // Переключение слайдов
+  function goToSlide(index) {
+    if (index < 0 || index >= slideCount) return;
+    
+    currentSlide = index;
+    updateSliderPosition();
+    updateIndicators();
+  }
+  
+  function nextSlide() {
+    goToSlide((currentSlide + 1) % slideCount);
+  }
+  
+  function prevSlide() {
+    goToSlide((currentSlide - 1 + slideCount) % slideCount);
+  }
+  
+  function updateSliderPosition() {
+    slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+  }
+  
+  function updateIndicators() {
+    indicators.forEach((indicator, i) => {
+      indicator.classList.toggle('active', i === currentSlide);
+    });
+  }
+  
+  // Обработчики свайпа
+  function touchStart(e) {
+    if (e.type === 'touchstart') {
+      startPosX = e.touches[0].clientX;
+    } else {
+      startPosX = e.clientX;
+      e.preventDefault(); // Для мыши
+    }
+    
+    isDragging = true;
+    slider.style.transition = 'none';
+  }
+  
+  function touchEnd() {
+    isDragging = false;
+    slider.style.transition = 'transform 0.5s ease';
+    
+    const movedBy = currentTranslate - prevTranslate;
+    
+    if (movedBy < -50 && currentSlide < slideCount - 1) {
+      nextSlide();
+    } else if (movedBy > 50 && currentSlide > 0) {
+      prevSlide();
+    } else {
+      updateSliderPosition();
+    }
+  }
+  
+  function touchMove(e) {
+    if (!isDragging) return;
+    
+    const currentPosition = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+    currentTranslate = prevTranslate + currentPosition - startPosX;
+    
+    // Ограничение свайпа для первого и последнего слайда
+    if (currentSlide === 0 && currentTranslate > 0) {
+      currentTranslate = 0;
+    } else if (currentSlide === slideCount - 1 && currentTranslate < 0) {
+      currentTranslate = 0;
+    }
+    
+    slider.style.transform = `translateX(calc(-${currentSlide * 100}% + ${currentTranslate}px))`;
+  }
+  
+  // Клик по индикаторам
+  indicators.forEach((indicator, index) => {
+    indicator.addEventListener('click', () => goToSlide(index));
+  });
+  
+  // Инициализация
+  initSlider();
+  goToSlide(0);
+});

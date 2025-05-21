@@ -223,10 +223,44 @@
     gap: 20px;
   }
 
+  &__slider {
+    position: relative;
+    overflow: hidden;
+  }
+
+  &__slider-indicators {
+    display: none;
+
+    @media (max-width:mixins.toEm(variables.$tablet)) {
+      justify-content: center;
+      margin: 20px 0;
+      display: flex;
+    }
+  }
+
+  &__indicator {
+    width: 40px;
+    height: 4px;
+    background-color: #ccc;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &.active {
+      background-color: red;
+    }
+  }
+
   &__items {
     display: flex;
     gap: 20px;
+
+    @media (max-width:mixins.toEm(variables.$tablet)) {
+      width: 100%;
+    }
   }
+
+
 
   &__item {
     display: flex;
@@ -258,6 +292,11 @@
       letter-spacing: -0.02em;
       text-align: center;
       color: var(--white);
+    }
+
+    @media (max-width:mixins.toEm(variables.$tablet)) {
+      flex: 0 0 100%;
+      max-width: 100%;
     }
   }
 
