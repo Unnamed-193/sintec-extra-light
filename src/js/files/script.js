@@ -214,7 +214,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   function updateSliderPosition() {
-    slider.style.transform = `translateX(-${currentSlide * 106}%)`;
+    slider.style.transform = `translateX(-${currentSlide * 104.5}%)`;
   }
   
   function updateIndicators() {
