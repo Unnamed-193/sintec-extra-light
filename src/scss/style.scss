@@ -96,8 +96,7 @@ body {
     @media (min-width: 1100px) and (max-width: 1320px) {
       @include mixins.adaptiveValue("padding-right", 150, 15, 1320, 1100);
       @include mixins.adaptiveValue("padding-left", 150, 15, 1320, 1100);
-      // padding-right: 150px !important;
-      // padding-left: 150px !important;
+    
     }
   }
 }
