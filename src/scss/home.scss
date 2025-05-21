@@ -194,7 +194,6 @@
     @media (max-width:mixins.toEm(variables.$mobile)) {
       padding-top: mixins.toRem(90);
       padding-bottom: mixins.toRem(90);
-      gap: 30px;
     }
   }
 
@@ -207,7 +206,7 @@
     color: var(--black);
     font-size: mixins.toRem(45);
     letter-spacing: -0.02em;
-    @include mixins.adaptiveValue("margin-bottom", 40, 40);
+    @include mixins.adaptiveValue("margin-bottom", 40, 33.6);
 
     @media (max-width:mixins.toEm(variables.$mobile)) {
       font-size: mixins.toRem(32);
@@ -226,37 +225,40 @@
   &__slider {
     position: relative;
     overflow: hidden;
+    touch-action: pan-x;
   }
 
   &__slider-indicators {
     display: none;
 
-    @media (max-width:mixins.toEm(variables.$tablet)) {
+    @media (max-width:mixins.toEm(variables.$mobile)) {
       justify-content: center;
       margin: 20px 0;
       display: flex;
+      gap: 12px;
     }
   }
 
   &__indicator {
-    width: 40px;
-    height: 4px;
-    background-color: #ccc;
-    margin: 0 5px;
+    width: mixins.toRem(76);
+    height: mixins.toRem(3);
+    background: var(--grey-light);
     cursor: pointer;
     transition: background-color 0.3s;
 
     &.active {
-      background-color: red;
+      background: var(--red);
     }
   }
 
   &__items {
     display: flex;
-    gap: 20px;
+    gap: mixins.toRem(20);
 
-    @media (max-width:mixins.toEm(variables.$tablet)) {
+    @media (max-width:mixins.toEm(variables.$mobile)) {
+      will-change: transform;
       width: 100%;
+      gap: 0;
     }
   }
 
@@ -269,16 +271,23 @@
     background: var(--grey-light);
     border-radius: mixins.toRem(15) mixins.toRem(15) 0 0;
     flex: 1 1 50%;
-    padding: 50px 0 29px;
+    padding: mixins.toRem(50) 0 mixins.toRem(29);
+
+    @media (max-width:mixins.toEm(variables.$mobile)) {
+      flex: 0 0 100%;
+      max-width: 100%;
+      border-radius: mixins.toRem(10);
+      padding: mixins.toRem(30) 0 mixins.toRem(29);
+    }
 
     &-title {
       line-height: 130%;
       letter-spacing: -0.02em;
       text-align: center;
       color: var(--black);
-      margin-bottom: mixins.toRem(20);
 
       @include mixins.adaptiveValue("font-size", 24, 16);
+      @include mixins.adaptiveValue("margin-bottom", 20, 15.2);
     }
 
     &-slogan {
@@ -294,21 +303,17 @@
       color: var(--white);
     }
 
-    @media (max-width:mixins.toEm(variables.$tablet)) {
-      flex: 0 0 100%;
-      max-width: 100%;
-    }
   }
 
   &__counter {
     box-shadow:
       -4px -4px 7px 0 var(--white), 0 0 0 0 rgba(30, 31, 45, 0.12), 0 6px 14px 0 rgba(32, 33, 46, 0.12), 0 26px 26px 0 rgba(34, 35, 44, 0.1), 0 102px 41px 0 rgba(38, 39, 55, 0.02), 0 -1px 12px 0 rgba(133, 131, 225, 0.25);
     background: var(--grey-light);
-    border-radius: 15px;
-    width: 359px;
-    height: 80px;
 
-    @include mixins.adaptiveValue("margin-bottom", 32, 60);
+    @include mixins.adaptiveValue("margin-bottom", 32, 56.8);
+    @include mixins.adaptiveValue("border-radius", 15, 11);
+    @include mixins.adaptiveValue("width", 359, 269);
+    @include mixins.adaptiveValue("height", 80, 60);
   }
 
   &__counter-list {
@@ -321,11 +326,13 @@
   &__counter-list-item {
     display: flex;
     align-items: center;
-    margin-right: 10px;
     font-weight: 500;
-    font-size: 50px;
     text-align: center;
     color: var(--grey-dark);
+
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
 
     &:not(:last-child)::after {
       content: '';
@@ -335,6 +342,8 @@
       width: 2px;
       background: linear-gradient(180deg, rgba(95, 100, 113, 0) 0%, #5f6471 54.51%, rgba(95, 100, 113, 0) 100%);
     }
+
+    @include mixins.adaptiveValue("font-size", 50, 37);
   }
 
 

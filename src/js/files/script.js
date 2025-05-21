@@ -194,11 +194,6 @@ document.addEventListener('DOMContentLoaded', function() {
     slider.addEventListener('mouseleave', touchEnd);
     slider.addEventListener('mousemove', touchMove);
     
-    // Остановка автопереключения при взаимодействии
-    slider.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
-    slider.addEventListener('mouseleave', () => {
-      autoSlideInterval = setInterval(nextSlide, 5000);
-    });
   }
   
   // Переключение слайдов
@@ -278,6 +273,8 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   
   // Инициализация
-  initSlider();
-  goToSlide(0);
+  if(window.innerWidth < 768) {
+    initSlider();
+    goToSlide(0);
+  }
 });
