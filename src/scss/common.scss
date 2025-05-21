@@ -140,8 +140,8 @@ img, video {
 
   @media (max-width:mixins.toEm(variables.$mobileSmall)) {
     width: 100%;
-    font-size: mixins.toRem(18);
-    border-radius: mixins.toRem(6);
+    font-size: mixins.toRem(20);
+    border-radius: mixins.toRem(5);
   }
 
   &-white {

@@ -135,3 +135,38 @@ function createScrollbar(parent) {
 
   return scrollbar;
 }
+
+function updateVideoSource() {
+  const video = document.querySelector('.hero__video');
+  if (!video) return;
+
+  const isMobile = window.innerWidth <= 480;
+  const basePath = isMobile ? 'video/hero_video_mobile' : 'video/hero_video';
+  const cacheBuster = `?t=${Date.now()}`;
+
+  const newSources = `
+    <source src="${basePath}.mp4${cacheBuster}" type="video/mp4">
+    <source src="${basePath}.webm${cacheBuster}" type="video/webm">
+  `;
+
+  if (video.innerHTML.trim() !== newSources.trim()) {
+    video.innerHTML = newSources;
+    video.load();
+    
+    // Попытка автовоспроизведения с обработкой ошибок
+    video.play().catch(e => {
+      console.log("Автовоспроизведение заблокировано. Нужен клик пользователя.");
+    });
+  }
+}
+
+// Оптимизированный ресайз с троттлингом
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(updateVideoSource, 100);
+});
+
+// Запуск при загрузке и когда DOM готов
+document.addEventListener('DOMContentLoaded', updateVideoSource);
+window.addEventListener('load', updateVideoSource);
