@@ -198,7 +198,7 @@ window.addEventListener('resize', function() {
   }
 });
 
-document.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
   if (window.innerWidth < 768) {
     swiper.enable();
   } else {

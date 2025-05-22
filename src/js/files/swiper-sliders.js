@@ -136,9 +136,9 @@ function initSlidersScroll() {
 	}
 }
 
-window.addEventListener("load", function (e) {
-	// Запуск инициализации слайдеров
-	initSliders();
-	// Запуск инициализации скролла на базе слайдера (по классу swiper_scroll)
-	//initSlidersScroll();
-});
+// window.addEventListener("load", function (e) {
+// 	// Запуск инициализации слайдеров
+// 	initSliders();
+// 	// Запуск инициализации скролла на базе слайдера (по классу swiper_scroll)
+// 	//initSlidersScroll();
+// });
