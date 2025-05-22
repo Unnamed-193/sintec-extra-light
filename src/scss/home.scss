@@ -421,6 +421,7 @@
 
     @media (max-width:mixins.toEm(variables.$tablet)) {
       flex-direction: column;
+      align-items: center;
     }
   }
 
