@@ -1,9 +1,14 @@
 // Подключение функционала "Чертоги Фрилансера"
 // Подключение списка активных модулей
-
+import Swiper from "swiper";
+import { Pagination } from 'swiper/modules';
 import './getCurrentYear.js';
 import './gsap/hero/hero.js';
 // import './gsap/ow/ow.js';
+
+import 'swiper/css/pagination';
+
+import 'swiper/css';
 
 const mmd1 = matchMedia('(min-width: 1920px)');
 const md3 = matchMedia('(min-width: 1920px)');
@@ -162,119 +167,41 @@ function updateVideoSource() {
   }
 }
 
-// Оптимизированный ресайз с троттлингом
-let resizeTimer;
-window.addEventListener('resize', () => {
-  clearTimeout(resizeTimer);
-  resizeTimer = setTimeout(updateVideoSource, 100);
-});
-
 // Запуск при загрузке и когда DOM готов
 document.addEventListener('DOMContentLoaded', updateVideoSource);
 
-document.addEventListener('DOMContentLoaded', function() {
-  const slider = document.querySelector('.ow__items');
-  const indicators = document.querySelectorAll('.ow__indicator');
-  let currentSlide = 0;
-  let isDragging = false;
-  let startPosX = 0;
-  let currentTranslate = 0;
-  let prevTranslate = 0;
-  const slideCount = document.querySelectorAll('.ow__item').length;
-  
-  // Инициализация слайдера
-  function initSlider() {
-    slider.addEventListener('touchstart', touchStart);
-    slider.addEventListener('touchend', touchEnd);
-    slider.addEventListener('touchmove', touchMove);
-    
-    // Для мыши/тачпада
-    slider.addEventListener('mousedown', touchStart);
-    slider.addEventListener('mouseup', touchEnd);
-    slider.addEventListener('mouseleave', touchEnd);
-    slider.addEventListener('mousemove', touchMove);
-    
-  }
-  
-  // Переключение слайдов
-  function goToSlide(index) {
-    if (index < 0 || index >= slideCount) return;
-    
-    currentSlide = index;
-    updateSliderPosition();
-    updateIndicators();
-  }
-  
-  function nextSlide() {
-    goToSlide((currentSlide + 1) % slideCount);
-  }
-  
-  function prevSlide() {
-    goToSlide((currentSlide - 1 + slideCount) % slideCount);
-  }
-  
-  function updateSliderPosition() {
-    slider.style.transform = `translateX(-${currentSlide * 104.5}%)`;
-  }
-  
-  function updateIndicators() {
-    indicators.forEach((indicator, i) => {
-      indicator.classList.toggle('active', i === currentSlide);
-    });
-  }
-  
-  // Обработчики свайпа
-  function touchStart(e) {
-    if (e.type === 'touchstart') {
-      startPosX = e.touches[0].clientX;
-    } else {
-      startPosX = e.clientX;
-      e.preventDefault(); // Для мыши
+
+const swiper = new Swiper(".swiper", {
+  modules: [Pagination],
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+  },
+  // Отключаем функциональность на больших экранах
+  enabled: window.innerWidth < 768,
+  spaceBetween: 15,
+  breakpoints: {
+    // При ширине экрана >= 768px
+    768: {
+      enabled: false,
+      spaceBetween: 0,
     }
-    
-    isDragging = true;
-    slider.style.transition = 'none';
-  }
-  
-  function touchEnd() {
-    isDragging = false;
-    slider.style.transition = 'transform 0.5s ease';
-    
-    const movedBy = currentTranslate - prevTranslate;
-    
-    if (movedBy < -50 && currentSlide < slideCount - 1) {
-      nextSlide();
-    } else if (movedBy > 50 && currentSlide > 0) {
-      prevSlide();
-    } else {
-      updateSliderPosition();
-    }
-  }
-  
-  function touchMove(e) {
-    if (!isDragging) return;
-    
-    const currentPosition = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
-    currentTranslate = prevTranslate + currentPosition - startPosX;
-    
-    // Ограничение свайпа для первого и последнего слайда
-    if (currentSlide === 0 && currentTranslate > 0) {
-      currentTranslate = 0;
-    } else if (currentSlide === slideCount - 1 && currentTranslate < 0) {
-      currentTranslate = 0;
-    }
-    
-    slider.style.transform = `translateX(calc(-${currentSlide * 100}% + ${currentTranslate}px))`;
-  }
-  
-  // Клик по индикаторам
-  indicators.forEach((indicator, index) => {
-    indicator.addEventListener('click', () => goToSlide(index));
-  });
-  
-  // Инициализация
-  if(window.innerWidth < 768) {
-    initSlider();
-    goToSlide(0);
   }
 });
+
+// Обработчик изменения размера окна
+window.addEventListener('resize', function() {
+  if (window.innerWidth < 768) {
+    swiper.enable();
+  } else {
+    swiper.disable();
+  }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  if (window.innerWidth < 768) {
+    swiper.enable();
+  } else {
+    swiper.disable();
+  }
+})
