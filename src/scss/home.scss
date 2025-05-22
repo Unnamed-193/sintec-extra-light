@@ -185,6 +185,7 @@
 
 .swiper-pagination {
   position: static;
+  margin-top: mixins.toRem(6);
 }
 
 .swiper-pagination-bullet {
@@ -244,7 +245,11 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    gap: 20px;
+    gap: mixins.toRem(20);
+
+    @media (max-width:mixins.toEm(variables.$mobile)) {
+      gap: mixins.toRem(38);
+    }
   }
 
   &__slider {
@@ -333,16 +338,16 @@
     color: var(--grey-dark);
 
     &:not(:last-child) {
-      margin-right: 10px;
+      @include mixins.adaptiveValue("margin-right", 10, 8);
     }
 
     &:not(:last-child)::after {
       content: '';
       display: inline-block;
-      margin-left: 10px;
       height: 50px;
       width: 2px;
       background: linear-gradient(180deg, rgba(95, 100, 113, 0) 0%, #5f6471 54.51%, rgba(95, 100, 113, 0) 100%);
+      @include mixins.adaptiveValue("margin-left", 10, 8);
     }
 
     @include mixins.adaptiveValue("font-size", 50, 37);
@@ -352,7 +357,14 @@
   &__row {
     border-radius: 0 0 15px 15px;
     background: var(--green);
-    padding: mixins.toRem(20) 0;
+    padding: mixins.toRem(20) mixins.toRem(32);
+
+    @media (max-width:mixins.toEm(variables.$mobile)) {
+      border-radius: mixins.toRem(10);
+      padding: mixins.toRem(15) mixins.toRem(32);
+      margin-right: -15px;
+      margin-left: -15px;
+    }
   }
 
   &__description {
@@ -396,12 +408,20 @@
 
     @include mixins.adaptiveValue("font-size", 24, 16);
     @include mixins.adaptiveValue("margin-bottom", 43.6, 11);
+
+    @media (max-width:mixins.toEm(variables.$mobileSmall)) {
+      max-width: mixins.toRem(345);
+    }
   }
 
   &__content {
     display: flex;
     align-items: flex-end;
     gap: 69px;
+
+    @media (max-width:mixins.toEm(variables.$tablet)) {
+      flex-direction: column;
+    }
   }
 
   &__content>* {
