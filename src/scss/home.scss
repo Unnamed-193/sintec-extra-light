@@ -608,11 +608,28 @@
     min-height: 297px;
     justify-content: space-between;
     position: relative;
+
+    @media (max-width:mixins.toEm(variables.$laptop)) {
+      min-height: 241px;
+    }
+
+    @media (max-width:mixins.toEm(variables.$tablet)) {
+      flex-direction: column;
+      gap: mixins.toRem(136);
+    }
   }
 
   &__top>* {
     flex: 0 1 597px;
     border-radius: mixins.toRem(20);
+
+    @media (max-width:mixins.toEm(variables.$laptop)) {
+      flex: 0 1 457px;
+    }
+
+    @media (max-width:mixins.toEm(variables.$tablet)) {
+      flex: none;
+    }
   }
 
 
@@ -620,6 +637,10 @@
     background: linear-gradient(168deg, #056370 42%, #eff1f3 100.00%);
     padding-top: mixins.toRem(18);
     padding-left: mixins.toRem(24);
+
+    @media (max-width:mixins.toEm(variables.$tablet)) {
+      flex: 1 1 422px;
+    }
   }
 
   &__logo {
@@ -627,6 +648,12 @@
     margin-bottom: 10px;
     @include mixins.adaptiveValue("gap", 10, 6);
     @include mixins.adaptiveValue("margin-bottom", 7, 20);
+
+    @media (max-width:mixins.toEm(variables.$laptop)) {
+      img {
+        width: 141px;
+      }
+    }
   }
 
   &__heading {
@@ -649,7 +676,7 @@
     line-height: 140%;
     color: var(--white);
     text-align: left;
-    max-width: 466px;
+    max-width: mixins.toRem(466);
 
     &--black {
       color: #000;
@@ -658,6 +685,7 @@
 
     @media (max-width:mixins.toEm(variables.$laptop)) {
       font-size: mixins.toRem(14);
+      max-width: mixins.toRem(360);
     }
 
     @media (max-width:mixins.toEm(variables.$tablet)) {
@@ -667,6 +695,10 @@
 
   &__right {
     position: relative;
+
+    @media (max-width:mixins.toEm(variables.$tablet)) {
+      flex: 1 1 397px;
+    }
   }
 
   &__video {
@@ -764,12 +796,17 @@
   align-items: center;
   border-radius: 100%;
   background-color: white;
-  top: 0;
+  top: 50%;
   left: 50%;
-  width: 304px;
-  height: 304px;
-  transform: translateX(-50%);
+  width: mixins.toRem(304);
+  height: mixins.toRem(304);
+  transform: translate(-50%, -50%);
   z-index: 100;
+
+  @media (max-width:mixins.toEm(variables.$laptop)) {
+    width: mixins.toRem(250);
+    height: mixins.toRem(250);
+  }
 
   &__circle {
     transform-origin: center;
