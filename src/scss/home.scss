@@ -407,7 +407,7 @@
     margin: 0 auto;
 
     @include mixins.adaptiveValue("font-size", 24, 16);
-    @include mixins.adaptiveValue("margin-bottom", 43.6, 11);
+    @include mixins.adaptiveValue("margin-bottom", 43.6, 33.4);
 
     @media (max-width:mixins.toEm(variables.$mobileSmall)) {
       max-width: mixins.toRem(345);
@@ -417,40 +417,86 @@
   &__content {
     display: flex;
     align-items: flex-end;
-    gap: 69px;
+
+    @include mixins.adaptiveValue("gap", 69, 16, 1920, variables.$laptop);
 
     @media (max-width:mixins.toEm(variables.$tablet)) {
       flex-direction: column;
       align-items: center;
+      gap: 30px;
     }
   }
 
-  &__content>* {
-    // flex: 1 1 50%;
-  }
 
   &__left {
+    flex: 1 1 54%;
     display: flex;
     align-items: end;
+
+    @media (max-width:mixins.toEm(variables.$laptop)) {
+      flex: 1 1 50%;
+    }
   }
 
-  &__podium {
-    background: var(--green);
-    border-radius: 15px;
-    width: 646px;
-    height: 169px;
+  &__right {
+    flex: 1 1 50%;
+
+    @media (max-width:mixins.toEm(variables.$tablet)) {
+      width: 100%;
+    }
   }
+
+  // &__podium {
+  //   background: var(--green);
+  //   border-radius: 15px;
+  //   width: 646px;
+  //   height: 169px;
+  // }
 
   &__list {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    @include mixins.adaptiveValue("gap", 30, 23, 1920, variables.$tablet);
+
+    @media (max-width:mixins.toEm(variables.$mobile)) {
+      gap: 19.8px;
+    }
   }
 
   &__list-item {
     position: relative;
-    width: 603px;
     height: 113px;
+    @include mixins.adaptiveValue("height", 113, 88, 1920, variables.$tablet);
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      border-radius: 50%;
+      z-index: 100;
+      box-shadow: 9px 10px 16px 0 rgba(13, 39, 80, 0.16), inset -7px -7px 8px 0 rgba(255, 255, 255, 0.64);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+
+      @include mixins.adaptiveValue("width", 113, 87, 1920, variables.$tablet);
+      @include mixins.adaptiveValue("height", 113, 87, 1920, variables.$tablet);
+
+      @media (max-width:mixins.toEm(variables.$mobile)) {
+        width: 93px;
+        height: 93px;
+      }
+    }
+
+    &:focus-visible::after,
+    &:hover::after,
+    &:active::after {
+      opacity: 1;
+    }
+
+    @media (max-width:mixins.toEm(variables.$mobile)) {
+      height: 96px;
+    }
   }
 
   &__rectangle {
@@ -458,26 +504,36 @@
     align-items: center;
     position: absolute;
     left: 98px;
-    width: 505px;
-    height: 113px;
+    right: 0;
     top: 50%;
+    height: 100%;
     transform: translateY(-50%);
     background-color: var(--grey-light);
     border-radius: 15px;
-    padding-left: 85px;
-
     @include mixins.adaptiveValue("border-radius", 15, 10);
+    @include mixins.adaptiveValue("padding-left", 85, 42.8, variables.$tablet);
+
+    @media (max-width:mixins.toEm(variables.$mobile)) {
+      height: 82px;
+      left: 85px;
+    }
   }
 
   &__circle-box {
     position: absolute;
-    width: 153px;
     height: 136px;
     top: 50%;
     transform: translateY(-50%);
     border-radius: 50%;
     background-color: white;
     z-index: 1;
+
+    @include mixins.adaptiveValue("width", 153, 123, 1920, variables.$tablet);
+
+    @media (max-width:mixins.toEm(variables.$mobile)) {
+      width: 107px;
+      height: 121px;
+    }
   }
 
   &__circle {
@@ -485,18 +541,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 113px;
-    height: 113px;
     background-color: var(--grey-light);
     border-radius: 50%;
     top: 50%;
     transform: translateY(-50%);
-    transition: box-shadow 0.4s ease;
 
-    &:focus-visible,
-    &:hover,
-    &:active {
-      box-shadow: 9px 10px 16px 0 rgba(13, 39, 80, 0.16), inset -7px -7px 8px 0 rgba(255, 255, 255, 0.64);
+    @include mixins.adaptiveValue("width", 113, 87, 1920, variables.$tablet);
+    @include mixins.adaptiveValue("height", 113, 87, 1920, variables.$tablet);
+
+    @media (max-width:mixins.toEm(variables.$mobile)) {
+      width: 93px;
+      height: 93px;
     }
   }
 
@@ -506,7 +561,7 @@
     color: #121212;
     text-align: left;
 
-    @include mixins.adaptiveValue("font-size", 22, 16);
+    @include mixins.adaptiveValue("font-size", 22, 16, 1920, variables.$laptop);
   }
 
 }
