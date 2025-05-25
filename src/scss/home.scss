@@ -383,8 +383,8 @@
 
   &__container {
     max-width: mixins.toRem(1350);
-    @include mixins.adaptiveValue("padding-bottom", 117.2, 94.8);
     text-align: center;
+    @include mixins.adaptiveValue("padding-bottom", 117.2, 94.8);
   }
 
   &__title {
@@ -600,7 +600,7 @@
   &__wrapper {
     display: flex;
     flex-direction: column;
-    gap: 17.8px;
+    @include mixins.adaptiveValue("gap", 17.8, 28.8);
   }
 
   &__top {
@@ -781,11 +781,20 @@
 
   &__bottom {
     display: flex;
-    gap: 20px;
+
+    @media (max-width:mixins.toEm(variables.$mobile)) {
+      flex-direction: column;
+    }
+
+    @include mixins.adaptiveValue("gap", 20, 29);
   }
 
   &__bottom>* {
     flex: 1 1 calc(50% - 20px);
+
+    @media (max-width:mixins.toEm(variables.$mobile)) {
+      flex: 1 1 100%;
+    }
   }
 
   &__bottom-item {
@@ -794,6 +803,32 @@
     gap: 20px;
     @include mixins.adaptiveValue("border-radius", 15, 10);
     @include mixins.adaptiveValue("padding", 24, 20);
+
+    @media (max-width:mixins.toEm(variables.$mobile)) {
+      flex-direction: column-reverse;
+      align-items: center;
+      padding-top: mixins.toRem(13);
+      padding-right: mixins.toRem(19);
+    }
+  }
+
+  &__bottom-item-img {
+    max-width: none;
+
+    @media (max-width:mixins.toEm(variables.$laptop)) {
+      width: 80px;
+      height: 80px;
+    }
+
+    @media (max-width:mixins.toEm(variables.$mobile)) {
+      width: auto;
+      height: auto;
+    }
+
+    @media (max-width:mixins.toEm(variables.$mobileSmall)) {
+      width: 100%;
+      height: auto;
+    }
   }
 
   &__bottom-item-box {
@@ -801,7 +836,11 @@
     flex-direction: column;
     gap: 13px;
     text-align: left;
-    max-width: 427px;
+    max-width: mixins.toRem(427);
+
+    @media (max-width:mixins.toEm(variables.$mobile)) {
+      max-width: mixins.toRem(308);
+    }
   }
 
   &__bottom-item-title {
@@ -809,6 +848,14 @@
     font-size: 24px;
     line-height: 130%;
     color: #121212;
+
+    @media (max-width:mixins.toEm(variables.$laptop)) {
+      font-size: mixins.toRem(20);
+    }
+
+    @media (max-width:mixins.toEm(variables.$mobile)) {
+      font-size: mixins.toRem(24);
+    }
   }
 
   &__bottom-item-text {
@@ -817,6 +864,14 @@
     line-height: 140%;
     letter-spacing: -0.01em;
     color: #000;
+
+    @media (max-width:mixins.toEm(variables.$laptop)) {
+      font-size: mixins.toRem(14);
+    }
+
+    @media (max-width:mixins.toEm(variables.$mobile)) {
+      font-size: mixins.toRem(16);
+    }
   }
 
   &__disclaimer {
@@ -827,6 +882,10 @@
     text-align: left;
 
     @include mixins.adaptiveValue("font-size", 14, 10);
+
+    @media (max-width:mixins.toEm(variables.$mobile)) {
+      margin-top: -12px;
+    }
   }
 }
 
@@ -889,6 +948,10 @@
 //==========================================================================================
 .evidence {
   background: var(--grey-light);
+
+  @media (max-width:mixins.toEm(variables.$laptop)) {
+    background-color: var(--white);
+  }
 
   &__container {
     padding-top: mixins.toRem(59.2);
