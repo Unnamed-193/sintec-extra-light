@@ -4,15 +4,17 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 document.addEventListener("DOMContentLoaded", () => {
-  const tl = gsap.timeline({
+  const tl = gsap.timeline(
+    {
     scrollTrigger: {
       trigger: ".ow",       // Элемент, который триггерит анимацию
-      start: "top 45%", 
+      start: "top 80%", 
       toggleActions: "play none none none", // play при входе, ничего при выходе/входе с конца/начале
       once: true,   
-      // markers: true,        // Включите для отладки (покажет метки в браузере)
+      markers: true,        // Включите для отладки (покажет метки в браузере)
     }
-  });
+  }
+);
 
   tl.from('.ow__title', { 
     y: 30, 

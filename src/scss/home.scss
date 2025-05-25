@@ -292,9 +292,22 @@
       letter-spacing: -0.02em;
       text-align: center;
       color: var(--black);
+      opacity: 0;
+      translate: 0 mixins.toRem(30);
 
       @include mixins.adaptiveValue("font-size", 24, 16);
       @include mixins.adaptiveValue("margin-bottom", 20, 15.2);
+
+      .loaded & {
+        transition:
+          translate var(--globalAnimDuration) var(--globalTransitionTiming),
+          opacity var(--globalAnimDuration) var(--globalTransitionTiming);
+      }
+
+      .loaded ._watcher-view & {
+        opacity: 1;
+        translate: 0 0;
+      }
     }
 
     &-slogan {
@@ -308,6 +321,20 @@
       letter-spacing: -0.02em;
       text-align: center;
       color: var(--white);
+      opacity: 0;
+      translate: 0 mixins.toRem(30);
+
+      .loaded & {
+        transition:
+          translate var(--globalAnimDuration) var(--globalTransitionTiming),
+          opacity var(--globalAnimDuration) var(--globalTransitionTiming);
+        transition-delay: calc(var(--globalAnimDuration) / 2);
+      }
+
+      .loaded ._watcher-view & {
+        opacity: 1;
+        translate: 0 0;
+      }
     }
 
   }
@@ -373,8 +400,23 @@
     text-align: center;
     color: var(--white);
     max-width: mixins.toRem(882);
+    opacity: 0;
+    translate: 0 mixins.toRem(30);
     margin: 0 auto;
     @include mixins.adaptiveValue("font-size", 22, 16);
+
+
+    .loaded & {
+      transition:
+        translate var(--globalAnimDuration) var(--globalTransitionTiming),
+        opacity var(--globalAnimDuration) var(--globalTransitionTiming);
+      transition-delay: calc(var(--globalAnimDuration) * 1.2);
+    }
+
+    .loaded ._watcher-view & {
+      opacity: 1;
+      translate: 0 0;
+    }
   }
 }
 
@@ -393,9 +435,22 @@
     letter-spacing: -0.02em;
     text-transform: uppercase;
     color: var(--black);
+    opacity: 0;
+    translate: 0 mixins.toRem(30);
 
     @include mixins.adaptiveValue("font-size", 45, 32);
     @include mixins.adaptiveValue("margin-bottom", 11, 11);
+
+    .loaded & {
+      transition:
+        translate var(--globalAnimDuration) var(--globalTransitionTiming),
+        opacity var(--globalAnimDuration) var(--globalTransitionTiming);
+    }
+
+    .loaded ._watcher-view & {
+      opacity: 1;
+      translate: 0 0;
+    }
   }
 
   &__subtitle {
@@ -406,11 +461,26 @@
     max-width: mixins.toRem(554);
     margin: 0 auto;
 
+    opacity: 0;
+    translate: 0 mixins.toRem(30);
+
     @include mixins.adaptiveValue("font-size", 24, 16);
     @include mixins.adaptiveValue("margin-bottom", 43.6, 33.4);
 
     @media (max-width:mixins.toEm(variables.$mobileSmall)) {
       max-width: mixins.toRem(345);
+    }
+
+    .loaded & {
+      transition:
+        translate var(--globalAnimDuration) var(--globalTransitionTiming),
+        opacity var(--globalAnimDuration) var(--globalTransitionTiming);
+      transition-delay: calc(var(--globalAnimDuration) / 2);
+    }
+
+    .loaded ._watcher-view & {
+      opacity: 1;
+      translate: 0 0;
     }
   }
 
@@ -466,6 +536,8 @@
   &__list-item {
     position: relative;
     height: 113px;
+    opacity: 0;
+    translate: 0 mixins.toRem(30);
     @include mixins.adaptiveValue("height", 113, 88, 1920, variables.$tablet);
 
     &::after {
@@ -496,6 +568,23 @@
 
     @media (max-width:mixins.toEm(variables.$mobile)) {
       height: 96px;
+    }
+
+    .loaded & {
+      transition:
+        translate var(--globalAnimDuration) var(--globalTransitionTiming),
+        opacity var(--globalAnimDuration) var(--globalTransitionTiming);
+    }
+
+    @for $i from 1 through 3 {
+      &:nth-child(#{$i}) {
+        transition-delay: calc(#{$i} * var(--globalAnimDuration) / 1.5);
+      }
+    }
+
+    .loaded ._watcher-view & {
+      opacity: 1;
+      translate: 0 0;
     }
   }
 
@@ -583,9 +672,22 @@
     text-transform: uppercase;
     text-align: center;
     color: var(--black);
+    opacity: 0;
+    translate: 0 mixins.toRem(30);
 
     @include mixins.adaptiveValue("font-size", 45, 32);
     @include mixins.adaptiveValue("margin-bottom", 11, 5.5);
+
+    .loaded & {
+      transition:
+        translate var(--globalAnimDuration) var(--globalTransitionTiming),
+        opacity var(--globalAnimDuration) var(--globalTransitionTiming);
+    }
+
+    .loaded ._watcher-view & {
+      opacity: 1;
+      translate: 0 0;
+    }
   }
 
   &__subtitle {
@@ -593,9 +695,24 @@
     letter-spacing: -0.02em;
     text-align: center;
     color: var(--grey-dark);
+    opacity: 0;
+    translate: 0 mixins.toRem(30);
+
 
     @include mixins.adaptiveValue("font-size", 24, 16);
     @include mixins.adaptiveValue("margin-bottom", 43.6, 35);
+
+    .loaded & {
+      transition:
+        translate var(--globalAnimDuration) var(--globalTransitionTiming),
+        opacity var(--globalAnimDuration) var(--globalTransitionTiming);
+      transition-delay: calc(var(--globalAnimDuration) / 2);
+    }
+
+    .loaded ._watcher-view & {
+      opacity: 1;
+      translate: 0 0;
+    }
   }
 
   &__wrapper {
@@ -655,6 +772,8 @@
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+    opacity: 0;
+    translate: 0 mixins.toRem(30);
     @include mixins.adaptiveValue("gap", 10, 6);
     @include mixins.adaptiveValue("margin-bottom", 7, 20);
 
@@ -674,6 +793,20 @@
       align-self: flex-start;
       align-items: flex-start;
     }
+
+    .loaded & {
+      transition:
+        translate var(--globalAnimDuration) var(--globalTransitionTiming),
+        opacity var(--globalAnimDuration) var(--globalTransitionTiming);
+      transition-delay: calc(var(--globalAnimDuration));
+    }
+
+    .loaded ._watcher-view & {
+      opacity: 1;
+      translate: 0 0;
+    }
+
+
   }
 
   &__box-text {
@@ -802,6 +935,8 @@
     background: var(--grey-light);
     display: flex;
     gap: 20px;
+    opacity: 0;
+    translate: 0 mixins.toRem(20);
     @include mixins.adaptiveValue("border-radius", 15, 10);
     @include mixins.adaptiveValue("padding", 24, 20);
 
@@ -810,6 +945,23 @@
       align-items: center;
       padding-top: mixins.toRem(13);
       padding-right: mixins.toRem(19);
+    }
+
+    .loaded & {
+      transition:
+        translate var(--globalAnimDuration) var(--globalTransitionTiming),
+        opacity var(--globalAnimDuration) var(--globalTransitionTiming);
+    }
+
+    @for $i from 1 through 2 {
+      &:nth-child(#{$i}) {
+        transition-delay: calc(#{$i} * var(--globalAnimDuration) / 1.5);
+      }
+    }
+
+    .loaded ._watcher-view & {
+      opacity: 1;
+      translate: 0 0;
     }
   }
 
@@ -1409,7 +1561,7 @@
   color: var(--light);
 
   @media (max-width:mixins.toEm(variables.$mobile)) {
-   margin-top: -15px;
+    margin-top: -15px;
   }
 
   &__container {
