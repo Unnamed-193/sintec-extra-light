@@ -717,6 +717,12 @@
     @media (max-width:mixins.toEm(variables.$tablet)) {
       font-size: mixins.toRem(18);
     }
+
+    @media (max-width:mixins.toEm(variables.$mobile)) {
+      &--black {
+        font-size: mixins.toRem(16);
+      }
+    }
   }
 
   &__right {
@@ -769,6 +775,7 @@
 
     @media (max-width:mixins.toEm(variables.$tablet)) {
       font-size: mixins.toRem(32);
+      margin-top: mixins.toRem(42);
     }
   }
 
@@ -840,6 +847,16 @@
   @media (max-width:mixins.toEm(variables.$laptop)) {
     width: mixins.toRem(250);
     height: mixins.toRem(250);
+
+    top: 50%;
+    left: 50%;
+  }
+
+  @media (max-width:mixins.toEm(variables.$mobile)) {
+    width: mixins.toRem(282);
+    height: mixins.toRem(285);
+    top: 52%;
+    left: 50%;
   }
 
   &__circle {
