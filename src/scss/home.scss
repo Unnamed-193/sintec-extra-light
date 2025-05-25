@@ -572,8 +572,9 @@
 
   &__container {
     max-width: mixins.toRem(1350);
-    padding-bottom: mixins.toRem(126.8);
     text-align: center;
+
+    @include mixins.adaptiveValue("padding-bottom", 126.8, 88.4);
   }
 
   &__title {
@@ -957,6 +958,11 @@
     padding-top: mixins.toRem(59.2);
     padding-bottom: mixins.toRem(70);
     max-width: mixins.toRem(1350);
+
+    @media (max-width:mixins.toEm(variables.$laptop)) {
+      padding-top: 0;
+      padding-bottom: mixins.toRem(90.8);
+    }
   }
 
   &__title {
@@ -968,11 +974,11 @@
     line-height: math.div(60, 50);
     text-transform: uppercase;
     letter-spacing: -0.02em;
-    margin-bottom: mixins.toRem(10.8);
     text-align: center;
     color: var(--black);
 
     @include mixins.adaptiveValue("font-size", 45, 32);
+    @include mixins.adaptiveValue("margin-bottom", 10.8, 6);
 
     .loaded & {
       transition:
@@ -1020,7 +1026,15 @@
     flex: 1 1 calc(50% - 20px);
   }
 
-  &__left {}
+  &__left {
+
+    @media (max-width:mixins.toEm(variables.$mobile)) {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
 
   &__mileage {
     margin-top: -14px;
@@ -1028,14 +1042,26 @@
     align-items: center;
     gap: 20px;
     margin-bottom: 35px;
+
+    @include mixins.adaptiveValue("margin-bottom", 35, 31);
+
+    @media (max-width:mixins.toEm(variables.$mobile)) {
+      flex-direction: column;
+      align-self: flex-start;
+      gap: 0;
+    }
   }
 
   &__km {
     font-weight: 400;
-    font-size: 60px;
+    font-size: mixins.toRem(60);
     line-height: 120%;
     letter-spacing: -0.02em;
     color: var(--red);
+
+    @media (max-width:mixins.toEm(variables.$laptop)) {
+      @include mixins.adaptiveValue("font-size", 45, 39, variables.$laptop, variables.$mobile);
+    }
 
   }
 
@@ -1045,6 +1071,15 @@
     line-height: 120%;
     letter-spacing: -0.02em;
     color: var(--grey-dark);
+
+    @media (max-width:mixins.toEm(variables.$laptop)) {
+      @include mixins.adaptiveValue("font-size", 16, 14, variables.$laptop, variables.$mobile);
+    }
+
+    @media (max-width:mixins.toEm(variables.$mobile)) {
+      color: #121212;
+    }
+
   }
 
 
@@ -1058,16 +1093,37 @@
 
     span {
       display: inline-block;
-      margin-bottom: 8px;
       color: var(--red);
+      @include mixins.adaptiveValue("margin-bottom", 8, 3);
     }
+
+    @media (max-width:mixins.toEm(variables.$laptop)) {
+      @include mixins.adaptiveValue("font-size", 18, 16, variables.$laptop, variables.$mobile);
+    }
+
+
   }
 
   &__btn {
     width: 100%;
-    font-size: 20px;
     line-height: 130%;
     text-align: center;
+
+    @include mixins.adaptiveValue("font-size", 20, 12);
+  }
+
+  &__img {
+    height: 100%;
+    width: 100%;
+
+    @media (max-width:mixins.toEm(variables.$mobile)) {
+      height: auto;
+    }
+  }
+
+  &__img-mobile {
+    width: auto;
+    margin-bottom: mixins.toRem(30);
   }
 }
 
@@ -1079,9 +1135,12 @@
     max-width: mixins.toRem(1350);
     position: relative;
 
-    @include mixins.adaptiveValue("padding-top", 118.8, 100);
-    @include mixins.adaptiveValue("padding-bottom", 118.8, 100);
+    @include mixins.adaptiveValue("padding-top", 118.8, 100, 1920, variables.$laptop);
+    @include mixins.adaptiveValue("padding-bottom", 118.8, 111.12);
 
+    @media (max-width:mixins.toEm(variables.$mobile)) {
+      padding-top: 0;
+    }
   }
 
   &__title {
@@ -1091,7 +1150,8 @@
     line-height: math.div(60, 50);
     letter-spacing: -0.02em;
     color: #121212;
-    margin-bottom: mixins.toRem(27.2);
+
+    @include mixins.adaptiveValue("margin-bottom", 27.2, 30.4);
 
     @include mixins.adaptiveValue("font-size", 50, 32);
 
@@ -1139,7 +1199,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: mixins.toRem(20);
     background-color: var(--light);
     border: mixins.toRem(1) solid var(--light_grey);
     border-radius: mixins.toRem(10);
@@ -1152,6 +1211,8 @@
       // flex: 1 0 mixins.toRem(227);
       scroll-snap-align: start;
     }
+
+    @include mixins.adaptiveValue("gap", 20, 10.8);
 
     // .loaded & {
     //   transition:
@@ -1188,6 +1249,10 @@
 
     @media (max-width:mixins.toEm(1023.98)) {
       display: block;
+    }
+
+    @media (max-width:mixins.toEm(variables.$mobile)) {
+      align-self: flex-start;
     }
 
     span {
@@ -1234,8 +1299,8 @@
     }
 
     @media (max-width:mixins.toEm(variables.$mobile)) {
-      min-height: mixins.toRem(40);
-      font-size: mixins.toRem(12);
+      min-height: mixins.toRem(44.8);
+      padding: 0 mixins.toRem(20);
     }
   }
 
@@ -1290,6 +1355,7 @@
     background: conic-gradient(from 221.46deg at 64.93% 94.59%, #0069FF 0deg, #F1107E 360deg);
     background-size: 300% 150%;
     background-position: 70% 70%;
+    border-radius: mixins.toRem(10);
   }
 
 
@@ -1341,6 +1407,10 @@
 .footer {
   background-color: var(--red);
   color: var(--light);
+
+  @media (max-width:mixins.toEm(variables.$mobile)) {
+   margin-top: -15px;
+  }
 
   &__container {
     display: flex;
