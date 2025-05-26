@@ -158,17 +158,71 @@ function updateVideoSource() {
   if (video.innerHTML.trim() !== newSources.trim()) {
     video.poster = poster;
     video.innerHTML = newSources;
+    
+    // Особенность iOS: нужно явно установить playsinline
+    video.setAttribute('playsinline', '');
+    video.setAttribute('webkit-playsinline', '');
+    video.setAttribute('muted', 'true'); // Обязательно для iOS
+    
     video.load();
     
-    // Попытка автовоспроизведения с обработкой ошибок
-    video.play().catch(e => {
-      console.log("Автовоспроизведение заблокировано. Нужен клик пользователя.");
-    });
+    const playPromise = video.play();
+    
+    if (playPromise !== undefined) {
+      playPromise.catch(e => {
+        // Создаем кнопку-заглушку для iOS
+        if (isIOS()) {
+          createFallbackButton(video);
+        }
+      });
+    }
   }
 }
 
-// Запуск при загрузке и когда DOM готов
-document.addEventListener('DOMContentLoaded', updateVideoSource);
+// Проверка iOS
+function isIOS() {
+  return /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+         (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+}
+
+// Создаем кнопку для ручного запуска
+function createFallbackButton(video) {
+  const container = video.parentElement;
+  const button = document.createElement('button');
+  button.className = 'ios-video-fallback';
+  button.innerHTML = '▶ Play Video';
+  button.style.cssText = `
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    padding: 12px 24px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  `;
+  
+  button.addEventListener('click', () => {
+    video.play();
+    button.remove();
+  });
+  
+  container.style.position = 'relative';
+  container.appendChild(button);
+}
+
+// Запускаем при полной загрузке страницы
+window.addEventListener('load', function() {
+  updateVideoSource();
+  
+  // Реинициализация при изменении ориентации
+  window.addEventListener('orientationchange', function() {
+    setTimeout(updateVideoSource, 300);
+  });
+});
 
 
 const swiper = new Swiper(".swiper", {
