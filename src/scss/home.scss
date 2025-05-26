@@ -435,22 +435,12 @@
     letter-spacing: -0.02em;
     text-transform: uppercase;
     color: var(--black);
-    opacity: 0;
-    translate: 0 mixins.toRem(30);
+
 
     @include mixins.adaptiveValue("font-size", 45, 32);
     @include mixins.adaptiveValue("margin-bottom", 11, 11);
 
-    .loaded & {
-      transition:
-        translate var(--globalAnimDuration) var(--globalTransitionTiming),
-        opacity var(--globalAnimDuration) var(--globalTransitionTiming);
-    }
 
-    .loaded ._watcher-view & {
-      opacity: 1;
-      translate: 0 0;
-    }
   }
 
   &__subtitle {
@@ -461,8 +451,7 @@
     max-width: mixins.toRem(554);
     margin: 0 auto;
 
-    opacity: 0;
-    translate: 0 mixins.toRem(30);
+  
 
     @include mixins.adaptiveValue("font-size", 24, 16);
     @include mixins.adaptiveValue("margin-bottom", 43.6, 33.4);
@@ -471,17 +460,7 @@
       max-width: mixins.toRem(345);
     }
 
-    .loaded & {
-      transition:
-        translate var(--globalAnimDuration) var(--globalTransitionTiming),
-        opacity var(--globalAnimDuration) var(--globalTransitionTiming);
-      transition-delay: calc(var(--globalAnimDuration) / 2);
-    }
 
-    .loaded ._watcher-view & {
-      opacity: 1;
-      translate: 0 0;
-    }
   }
 
   &__content {
@@ -536,8 +515,7 @@
   &__list-item {
     position: relative;
     height: 113px;
-    opacity: 0;
-    translate: 0 mixins.toRem(30);
+
     @include mixins.adaptiveValue("height", 113, 88, 1920, variables.$tablet);
 
     &::after {
@@ -570,22 +548,7 @@
       height: 96px;
     }
 
-    .loaded & {
-      transition:
-        translate var(--globalAnimDuration) var(--globalTransitionTiming),
-        opacity var(--globalAnimDuration) var(--globalTransitionTiming);
-    }
 
-    @for $i from 1 through 3 {
-      &:nth-child(#{$i}) {
-        transition-delay: calc(#{$i} * var(--globalAnimDuration) / 1.5);
-      }
-    }
-
-    .loaded ._watcher-view & {
-      opacity: 1;
-      translate: 0 0;
-    }
   }
 
   &__rectangle {
@@ -672,22 +635,10 @@
     text-transform: uppercase;
     text-align: center;
     color: var(--black);
-    opacity: 0;
-    translate: 0 mixins.toRem(30);
+
 
     @include mixins.adaptiveValue("font-size", 45, 32);
     @include mixins.adaptiveValue("margin-bottom", 11, 5.5);
-
-    .loaded & {
-      transition:
-        translate var(--globalAnimDuration) var(--globalTransitionTiming),
-        opacity var(--globalAnimDuration) var(--globalTransitionTiming);
-    }
-
-    .loaded ._watcher-view & {
-      opacity: 1;
-      translate: 0 0;
-    }
   }
 
   &__subtitle {
@@ -695,24 +646,10 @@
     letter-spacing: -0.02em;
     text-align: center;
     color: var(--grey-dark);
-    opacity: 0;
-    translate: 0 mixins.toRem(30);
 
 
     @include mixins.adaptiveValue("font-size", 24, 16);
     @include mixins.adaptiveValue("margin-bottom", 43.6, 35);
-
-    .loaded & {
-      transition:
-        translate var(--globalAnimDuration) var(--globalTransitionTiming),
-        opacity var(--globalAnimDuration) var(--globalTransitionTiming);
-      transition-delay: calc(var(--globalAnimDuration) / 2);
-    }
-
-    .loaded ._watcher-view & {
-      opacity: 1;
-      translate: 0 0;
-    }
   }
 
   &__wrapper {
@@ -772,8 +709,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 10px;
-    opacity: 0;
-    translate: 0 mixins.toRem(30);
+
     @include mixins.adaptiveValue("gap", 10, 6);
     @include mixins.adaptiveValue("margin-bottom", 7, 20);
 
@@ -793,20 +729,6 @@
       align-self: flex-start;
       align-items: flex-start;
     }
-
-    .loaded & {
-      transition:
-        translate var(--globalAnimDuration) var(--globalTransitionTiming),
-        opacity var(--globalAnimDuration) var(--globalTransitionTiming);
-      transition-delay: calc(var(--globalAnimDuration));
-    }
-
-    .loaded ._watcher-view & {
-      opacity: 1;
-      translate: 0 0;
-    }
-
-
   }
 
   &__box-text {
@@ -935,8 +857,7 @@
     background: var(--grey-light);
     display: flex;
     gap: 20px;
-    opacity: 0;
-    translate: 0 mixins.toRem(20);
+
     @include mixins.adaptiveValue("border-radius", 15, 10);
     @include mixins.adaptiveValue("padding", 24, 20);
 
@@ -945,23 +866,6 @@
       align-items: center;
       padding-top: mixins.toRem(13);
       padding-right: mixins.toRem(19);
-    }
-
-    .loaded & {
-      transition:
-        translate var(--globalAnimDuration) var(--globalTransitionTiming),
-        opacity var(--globalAnimDuration) var(--globalTransitionTiming);
-    }
-
-    @for $i from 1 through 2 {
-      &:nth-child(#{$i}) {
-        transition-delay: calc(#{$i} * var(--globalAnimDuration) / 1.5);
-      }
-    }
-
-    .loaded ._watcher-view & {
-      opacity: 1;
-      translate: 0 0;
     }
   }
 
@@ -1121,8 +1025,7 @@
     max-width: 856px;
     margin: 0 auto;
     font-weight: 400;
-    opacity: 0;
-    translate: 0 mixins.toRem(30);
+   
     line-height: math.div(60, 50);
     text-transform: uppercase;
     letter-spacing: -0.02em;
@@ -1132,16 +1035,7 @@
     @include mixins.adaptiveValue("font-size", 45, 32);
     @include mixins.adaptiveValue("margin-bottom", 10.8, 6);
 
-    .loaded & {
-      transition:
-        translate var(--globalAnimDuration) var(--globalTransitionTiming),
-        opacity var(--globalAnimDuration) var(--globalTransitionTiming);
-    }
 
-    .loaded ._watcher-view & {
-      opacity: 1;
-      translate: 0 0;
-    }
   }
 
   &__subtitle {
@@ -1150,23 +1044,12 @@
     letter-spacing: -0.02em;
     text-align: center;
     color: var(--grey-dark);
-    opacity: 0;
-    translate: 0 mixins.toRem(30);
+
     margin-bottom: 43px;
 
     @include mixins.adaptiveValue("font-size", 24, 16);
 
-    .loaded & {
-      transition:
-        translate var(--globalAnimDuration) var(--globalTransitionTiming),
-        opacity var(--globalAnimDuration) var(--globalTransitionTiming);
-      transition-delay: var(--globalAnimDuration);
-    }
 
-    .loaded ._watcher-view & {
-      opacity: 1;
-      translate: 0 0;
-    }
   }
 
   &__body {
