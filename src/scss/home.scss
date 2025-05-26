@@ -255,7 +255,7 @@
   &__slider {
     position: relative;
     overflow: hidden;
-    touch-action: pan-x;
+    touch-action: pan-y;
   }
 
   &__items {
@@ -285,6 +285,7 @@
       max-width: 100%;
       border-radius: mixins.toRem(10);
       padding: mixins.toRem(30) 0 mixins.toRem(29);
+      touch-action: pan-y;
     }
 
     &-title {

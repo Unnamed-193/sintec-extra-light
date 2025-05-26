@@ -4,10 +4,10 @@ import Swiper from "swiper";
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import './getCurrentYear.js';
-import './gsap/hero/hero.js';
-import './gsap/line/line.js';
 import './gsap/components/components.js';
 import './gsap/evidence/evidence.js';
+import './gsap/hero/hero.js';
+import './gsap/line/line.js';
 
 import 'swiper/css';
 
@@ -227,6 +227,7 @@ window.addEventListener('load', function() {
 
 
 const swiper = new Swiper(".swiper", {
+  direction: 'horizontal',
   modules: [Pagination],
   pagination: {
     el: '.swiper-pagination',
@@ -235,6 +236,8 @@ const swiper = new Swiper(".swiper", {
   // Отключаем функциональность на больших экранах
   enabled: window.innerWidth < 768,
   spaceBetween: 15,
+
+    // Для лучшей работы на мобильных
   breakpoints: {
     // При ширине экрана >= 768px
     768: {
