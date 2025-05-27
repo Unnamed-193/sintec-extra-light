@@ -452,7 +452,7 @@
     max-width: mixins.toRem(554);
     margin: 0 auto;
 
-  
+
 
     @include mixins.adaptiveValue("font-size", 24, 16);
     @include mixins.adaptiveValue("margin-bottom", 43.6, 33.4);
@@ -473,7 +473,7 @@
     @media (max-width:mixins.toEm(variables.$tablet)) {
       flex-direction: column;
       align-items: center;
-      gap: 30px;
+      gap: mixins.toRem(30);
     }
   }
 
@@ -486,6 +486,13 @@
     @media (max-width:mixins.toEm(variables.$laptop)) {
       flex: 1 1 50%;
     }
+
+    @media (min-width:mixins.toEm(variables.$maxWidth)) {
+      img {
+        width: mixins.toRem(646);
+        height: mixins.toRem(419);
+      }
+    }
   }
 
   &__right {
@@ -495,13 +502,6 @@
       width: 100%;
     }
   }
-
-  // &__podium {
-  //   background: var(--green);
-  //   border-radius: 15px;
-  //   width: 646px;
-  //   height: 169px;
-  // }
 
   &__list {
     display: flex;
@@ -515,7 +515,7 @@
 
   &__list-item {
     position: relative;
-    height: 113px;
+    height: mixins.toRem(113);
 
     @include mixins.adaptiveValue("height", 113, 88, 1920, variables.$tablet);
 
@@ -534,8 +534,8 @@
       @include mixins.adaptiveValue("height", 113, 87, 1920, variables.$tablet);
 
       @media (max-width:mixins.toEm(variables.$mobile)) {
-        width: 93px;
-        height: 93px;
+        width: mixins.toRem(93);
+        height: mixins.toRem(93);
       }
     }
 
@@ -546,7 +546,7 @@
     }
 
     @media (max-width:mixins.toEm(variables.$mobile)) {
-      height: 96px;
+      height: mixins.toRem(96);
     }
 
 
@@ -556,25 +556,25 @@
     display: flex;
     align-items: center;
     position: absolute;
-    left: 98px;
+    left: mixins.toRem(98);
     right: 0;
     top: 50%;
     height: 100%;
     transform: translateY(-50%);
     background-color: var(--grey-light);
-    border-radius: 15px;
+    border-radius: mixins.toRem(15);
     @include mixins.adaptiveValue("border-radius", 15, 10);
     @include mixins.adaptiveValue("padding-left", 85, 42.8, variables.$tablet);
 
     @media (max-width:mixins.toEm(variables.$mobile)) {
-      height: 82px;
-      left: 85px;
+      height: mixins.toRem(82);
+      left: mixins.toRem(85);
     }
   }
 
   &__circle-box {
     position: absolute;
-    height: 136px;
+    height: mixins.toRem(136);
     top: 50%;
     transform: translateY(-50%);
     border-radius: 50%;
@@ -584,8 +584,8 @@
     @include mixins.adaptiveValue("width", 153, 123, 1920, variables.$tablet);
 
     @media (max-width:mixins.toEm(variables.$mobile)) {
-      width: 107px;
-      height: 121px;
+      width: mixins.toRem(107);
+      height: mixins.toRem(121);
     }
   }
 
@@ -603,8 +603,8 @@
     @include mixins.adaptiveValue("height", 113, 87, 1920, variables.$tablet);
 
     @media (max-width:mixins.toEm(variables.$mobile)) {
-      width: 93px;
-      height: 93px;
+      width: mixins.toRem(93);
+      height: mixins.toRem(93);
     }
   }
 
@@ -661,12 +661,12 @@
 
   &__top {
     display: flex;
-    min-height: 297px;
+    min-height: mixins.toRem(297);
     justify-content: space-between;
     position: relative;
 
     @media (max-width:mixins.toEm(variables.$laptop)) {
-      min-height: 241px;
+      min-height: mixins.toRem(241);
     }
 
     @media (max-width:mixins.toEm(variables.$tablet)) {
@@ -677,11 +677,11 @@
 
   &__top>* {
 
-    flex: 0 1 597px;
+    flex: 0 1 mixins.toRem(597);
     border-radius: mixins.toRem(20);
 
     @media (max-width:mixins.toEm(variables.$laptop)) {
-      flex: 0 1 457px;
+      flex: 0 1 mixins.toRem(457);
     }
 
     @media (max-width:mixins.toEm(variables.$tablet)) {
@@ -696,7 +696,7 @@
     padding-left: mixins.toRem(24);
 
     @media (max-width:mixins.toEm(variables.$tablet)) {
-      flex: 1 1 422px;
+      flex: 1 1 mixins.toRem(422);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -709,14 +709,14 @@
   &__logo {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: mixins.toRem(10);
 
     @include mixins.adaptiveValue("gap", 10, 6);
     @include mixins.adaptiveValue("margin-bottom", 7, 20);
 
     @media (max-width:mixins.toEm(variables.$laptop)) {
       img {
-        width: 141px;
+        width: mixins.toRem(141);
       }
     }
 
@@ -1026,7 +1026,7 @@
     max-width: 856px;
     margin: 0 auto;
     font-weight: 400;
-   
+
     line-height: math.div(60, 50);
     text-transform: uppercase;
     letter-spacing: -0.02em;
