@@ -753,7 +753,7 @@
     @include mixins.adaptiveValue("font-size", 40, 32);
   }
 
-  &__top-text {
+  &__left-text {
     font-weight: 400;
     font-size: mixins.toRem(16);
     line-height: 140%;
@@ -761,10 +761,24 @@
     text-align: left;
     max-width: mixins.toRem(466);
 
-    &--black {
-      color: #000;
-      text-align: center;
+    @media (max-width:mixins.toEm(variables.$laptop)) {
+      font-size: mixins.toRem(14);
+      max-width: mixins.toRem(360);
     }
+
+    @media (max-width:mixins.toEm(variables.$tablet)) {
+      font-size: mixins.toRem(18);
+    }
+
+  }
+
+  &__right-text {
+    font-weight: 400;
+    font-size: mixins.toRem(16);
+    line-height: 140%;
+    max-width: mixins.toRem(466);
+    color: #000;
+    text-align: center;
 
     @media (max-width:mixins.toEm(variables.$laptop)) {
       font-size: mixins.toRem(14);
@@ -776,9 +790,7 @@
     }
 
     @media (max-width:mixins.toEm(variables.$mobile)) {
-      &--black {
         font-size: mixins.toRem(16);
-      }
     }
   }
 
@@ -1027,7 +1039,7 @@
       transform: rotate(360deg);
     }
   }
-  
+
 
   &__red-line {
     stroke-dasharray: 235;
@@ -1036,7 +1048,7 @@
 
   &__text {
     transform: rotate(-180deg);
-    transform-origin: center; 
+    transform-origin: center;
   }
 
   &__line {
@@ -1051,15 +1063,15 @@
     opacity: 0;
   }
 
-  &__yellow { 
+  &__yellow {
     transform-origin: center;
-  transform: scale(0);
+    transform: scale(0);
 
   }
 
   @keyframes yellow {
     to {
-       transform: scale(1);
+      transform: scale(1);
     }
   }
 

@@ -29,9 +29,9 @@ function initComponentsAnimation() {
       '.components__title',
       '.components__subtitle',
       '.components__logo',
+      '.components__left-text',
       '.components__right-title',
-      '.components__top-text',
-      'components__top-text--black',
+      '.components__right-text',
       '.components__bottom-item:nth-child(1)',
       '.components__bottom-item:nth-child(2)',
       '.components__disclaimer'
@@ -63,8 +63,9 @@ function initComponentsAnimation() {
       .from('.components__title', baseSettings)
       .from('.components__subtitle', { ...baseSettings, delay: 0.3 }, 0)
       .from('.components__logo', { ...baseSettings, delay: 0.5 }, 0)
+      .from('.components__left-text', { ...baseSettings, delay: 0.7 }, 0)
       .from('.components__right-title', { ...baseSettings, delay: 0.5 }, 0)
-      .from('.components__top-text', { ...baseSettings, delay: 0.7 }, 0)
+      .from('.components__right-text', { ...baseSettings, delay: 0.7 }, 0)
       .from('.components__bottom-item', { 
         ...baseSettings, 
         delay: 1,
