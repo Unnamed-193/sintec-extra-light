@@ -5,10 +5,10 @@ import Swiper from "swiper";
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import './getCurrentYear.js';
+import './gsap/hero/hero.js';
 import './gsap/components/components.js';
 import './gsap/components/circle.js';
 // import './gsap/evidence/evidence.js';
-// import './gsap/hero/hero.js';
 // import './gsap/line/line.js';
 
 import 'swiper/css';
