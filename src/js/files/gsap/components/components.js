@@ -3,6 +3,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+window.requestAnimationFrame = window.requestAnimationFrame || function(f) {
+  return setTimeout(f, 1000 / 60);
+};
+
 // Переменная для хранения таймлайнов
 let componentAnimations = {
   desktop: null,
@@ -27,6 +31,7 @@ ScrollTrigger.defaults({
     y: 30,
     opacity: 0,
     duration: 0.6,
+    force3D: true,
     ease: "power2.out"
   };
 
@@ -104,11 +109,15 @@ function handleResize() {
   clearTimeout(resizeTimeout);
   resizeTimeout = setTimeout(() => {
     initComponentsAnimation();
+    ScrollTrigger.refresh();
   }, 200);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  setTimeout(initComponentsAnimation, 500);
+  setTimeout(() => {
+    initComponentsAnimation()
+    ScrollTrigger.refresh();
+  }, 500);
 });
 
 window.addEventListener('resize', handleResize, { passive: true });
