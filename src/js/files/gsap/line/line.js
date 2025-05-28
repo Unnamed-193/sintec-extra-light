@@ -6,7 +6,13 @@ gsap.registerPlugin(ScrollTrigger);
 
 // Функция для инициализации анимации
 function initLineAnimation() {
-  
+  gsap.core.globals("ScrollTrigger", ScrollTrigger);
+  ScrollTrigger.defaults({
+    markers: false,
+    scroller: window, // Явно указываем скроллер
+    anticipatePin: 1
+  });
+    
   const lineSection = document.querySelector('.line');
   
   // Анимация для заголовка
@@ -62,4 +68,6 @@ function initLineAnimation() {
 }
 
 // Инициализируем анимацию при загрузке страницы
-document.addEventListener('DOMContentLoaded', initLineAnimation);
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(initLineAnimation, 500);
+});

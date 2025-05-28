@@ -12,6 +12,13 @@ let componentAnimations = {
 function initComponentsAnimation() {
   // Сначала убиваем все старые анимации
   killComponentAnimations();
+
+  gsap.core.globals("ScrollTrigger", ScrollTrigger);
+ScrollTrigger.defaults({
+  markers: false,
+  scroller: window, // Явно указываем скроллер
+  anticipatePin: 1
+});
   
   const componentsSection = document.querySelector('.components');
   const isMobile = window.matchMedia('(max-width: 767.98px)').matches;
@@ -100,5 +107,8 @@ function handleResize() {
   }, 200);
 }
 
-document.addEventListener('DOMContentLoaded', initComponentsAnimation);
-window.addEventListener('resize', handleResize);
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(initComponentsAnimation, 500);
+});
+
+window.addEventListener('resize', handleResize, { passive: true });

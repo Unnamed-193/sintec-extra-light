@@ -5,6 +5,13 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 function initEvidenceAnimation() {
+  gsap.core.globals("ScrollTrigger", ScrollTrigger);
+  ScrollTrigger.defaults({
+    markers: false,
+    scroller: window, // Явно указываем скроллер
+    anticipatePin: 1
+  });
+    
   const evidenceSection = document.querySelector('.evidence');
   
   // Анимация для заголовка и подзаголовка
@@ -100,4 +107,6 @@ function initEvidenceAnimation() {
 }
 
 // Инициализация при загрузке страницы
-document.addEventListener('DOMContentLoaded', initEvidenceAnimation);
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(initEvidenceAnimation, 500);
+});
