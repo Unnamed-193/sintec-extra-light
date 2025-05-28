@@ -1,14 +1,21 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-// Регистрируем плагин ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
 
+// Переменная для хранения таймлайнов
+let componentAnimations = {
+  desktop: null,
+  mobile: null
+};
+
 function initComponentsAnimation() {
+  // Сначала убиваем все старые анимации
+  killComponentAnimations();
+  
   const componentsSection = document.querySelector('.components');
   const isMobile = window.matchMedia('(max-width: 767.98px)').matches;
 
-  // Общие настройки для всех анимаций
   const baseSettings = {
     y: 30,
     opacity: 0,
@@ -17,7 +24,7 @@ function initComponentsAnimation() {
   };
 
   if (isMobile) {
-    // Мобильная версия - последовательная анимация при скролле
+    // Мобильная версия
     const mobileElements = [
       '.components__title',
       '.components__subtitle',
@@ -30,92 +37,67 @@ function initComponentsAnimation() {
       '.components__disclaimer'
     ];
 
-    mobileElements.forEach((selector, index) => {
-      gsap.from(selector, {
+    componentAnimations.mobile = mobileElements.map(selector => {
+      return gsap.from(selector, {
         ...baseSettings,
         scrollTrigger: {
           trigger: selector,
           start: 'top 90%',
           end: 'top 60%',
           toggleActions: 'play none none none',
-          markers: false // можно включить для отладки
+          markers: false
         }
       });
     });
   } else {
-    // Десктоп версия - оригинальная анимация
-    gsap.from('.components__title', {
-      ...baseSettings,
+    // Десктоп версия
+    componentAnimations.desktop = gsap.timeline({
       scrollTrigger: {
         trigger: componentsSection,
         start: 'top 80%',
-        toggleActions: 'play none none none',
+        toggleActions: 'play none none none'
       }
     });
     
-    gsap.from('.components__subtitle', {
-      ...baseSettings,
-      delay: 0.3,
-      scrollTrigger: {
-        trigger: componentsSection,
-        start: 'top 80%',
-        toggleActions: 'play none none none',
-      }
-    });
-    
-    gsap.from('.components__logo', {
-      ...baseSettings,
-      delay: 0.5,
-      scrollTrigger: {
-        trigger: componentsSection,
-        start: 'top 80%',
-        toggleActions: 'play none none none',
-      }
-    });
-    
-    gsap.from('.components__right-title', {
-      ...baseSettings,
-      delay: 0.5,
-      scrollTrigger: {
-        trigger: componentsSection,
-        start: 'top 80%',
-        toggleActions: 'play none none none',
-      }
-    });
-    
-    gsap.from('.components__top-text', {
-      ...baseSettings,
-      delay: 0.7,
-      scrollTrigger: {
-        trigger: componentsSection,
-        start: 'top 80%',
-        toggleActions: 'play none none none',
-      }
-    });
-    
-    gsap.from('.components__bottom-item', {
-      ...baseSettings,
-      delay: 1,
-      stagger: 0.2,
-      scrollTrigger: {
-        trigger: componentsSection,
-        start: 'top 80%',
-        toggleActions: 'play none none none',
-      }
-    });
-    
-    gsap.from('.components__disclaimer', {
-      ...baseSettings,
-      delay: 1.4,
-      scrollTrigger: {
-        trigger: componentsSection,
-        start: 'top 80%',
-        toggleActions: 'play none none none',
-      }
-    });
+    componentAnimations.desktop
+      .from('.components__title', baseSettings)
+      .from('.components__subtitle', { ...baseSettings, delay: 0.3 }, 0)
+      .from('.components__logo', { ...baseSettings, delay: 0.5 }, 0)
+      .from('.components__right-title', { ...baseSettings, delay: 0.5 }, 0)
+      .from('.components__top-text', { ...baseSettings, delay: 0.7 }, 0)
+      .from('.components__bottom-item', { 
+        ...baseSettings, 
+        delay: 1,
+        stagger: 0.2 
+      }, 0)
+      .from('.components__disclaimer', { ...baseSettings, delay: 1.4 }, 0);
   }
 }
 
-// Инициализация при загрузке страницы и при изменении размера
+function killComponentAnimations() {
+  // Убиваем все ScrollTrigger'ы
+  ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+  
+  // Убиваем таймлайны
+  if (componentAnimations.desktop) {
+    componentAnimations.desktop.kill();
+  }
+  
+  if (componentAnimations.mobile) {
+    componentAnimations.mobile.forEach(anim => anim.kill());
+  }
+  
+  componentAnimations = { desktop: null, mobile: null };
+}
+
+// Дебаунс для ресайза
+let resizeTimeout;
+function handleResize() {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(() => {
+    initComponentsAnimation();
+  }, 200);
+}
+
 document.addEventListener('DOMContentLoaded', initComponentsAnimation);
-window.addEventListener('resize', initComponentsAnimation);
+window.addEventListener('resize', handleResize);
