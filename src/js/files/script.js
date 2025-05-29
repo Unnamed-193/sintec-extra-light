@@ -146,67 +146,37 @@ function updateVideoSource() {
   const video = document.querySelector('.hero__video');
   if (!video) return;
 
-
-    
     video.setAttribute('playsinline', '');
     video.setAttribute('webkit-playsinline', '');
     video.setAttribute('muted', 'true'); // Обязательно для iOS
     
     video.load();
     
-    const playPromise = video.play();
-    
-    if (playPromise !== undefined) {
-      playPromise.catch(e => {
-        // Создаем кнопку-заглушку для iOS
-        if (isIOS()) {
-          createFallbackButton(video);
-        }
-      });
-    }
+    video.play();
+
   }
 
 
-// Проверка iOS
-function isIOS() {
-  return /iPad|iPhone|iPod/.test(navigator.userAgent) || 
-         (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-}
-
-// Создаем кнопку для ручного запуска
-function createFallbackButton(video) {
-  const container = video.parentElement;
-  const button = document.createElement('button');
-  button.className = 'ios-video-fallback';
-  button.innerHTML = '▶ Play Video';
-  button.style.cssText = `
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 10;
-    padding: 12px 24px;
-    background: rgba(0,0,0,0.7);
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  `;
-  
-  button.addEventListener('click', () => {
-    video.play();
-    button.remove();
-  });
-  
-  container.style.position = 'relative';
-  container.appendChild(button);
-}
 
 window.addEventListener('load', function() {
   updateVideoSource();
-  
-
 });
+
+document.addEventListener('click', () => {
+  updateVideoSource()
+}, { once: true })
+
+const video = document.querySelector('.hero__video');
+playButton.addEventListener('click', () => {
+  video.play();
+  playButton.style.display = 'none'; // Скрываем после клика
+});
+
+setTimeout(() => {
+  const playButton = document.getElementById('playButton');
+  playButton.click(); // Симулируем клик
+}, 1000);
+
 
 
 const swiper = new Swiper(".swiper", {
