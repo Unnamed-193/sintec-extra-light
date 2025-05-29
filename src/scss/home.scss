@@ -279,6 +279,8 @@
     border-radius: mixins.toRem(15) mixins.toRem(15) 0 0;
     flex: 1 1 50%;
     padding: mixins.toRem(50) 0 mixins.toRem(29);
+    background-repeat: repeat-x;
+
 
     @media (max-width:mixins.toEm(variables.$mobile)) {
       flex: 0 0 100%;
@@ -340,6 +342,51 @@
 
   }
 
+  &__item--1 {
+    background-image: url('img/ow/ow_item_1.svg');
+    background-position: 0px mixins.toRem(62);
+
+    @media (max-width:mixins.toEm(variables.$mobile)) {
+      background-image: url('img/ow/ow_item_1_mobile.svg');
+      background-position: 0px mixins.toRem(97.2);
+    }
+  }
+
+
+
+  &__item--2 {
+    background-image: url('img/ow/ow_item_2.svg');
+    background-position: 0px mixins.toRem(79);
+
+    @media (max-width:mixins.toEm(variables.$mobile)) {
+      background-image: url('img/ow/ow_item_2_mobile.svg');
+      background-position: 0px mixins.toRem(97.2);
+    }
+  }
+
+  @keyframes bg {
+    from {
+      background-position-x: 0;
+    }
+
+    to {
+      background-position-x: 500%;
+      /* Двигаем на ширину текстуры */
+    }
+  }
+
+  &__counter-list-item-mr17 {
+    margin-right: mixins.toRem(17);
+  }
+
+  &__counter-list-item-mr10 {
+    margin-right: mixins.toRem(10);
+  }
+
+  &__counter-list-item-ml10 {
+    margin-left: mixins.toRem(10);
+  }
+
   &__counter {
     box-shadow:
       -4px -4px 7px 0 var(--white), 0 0 0 0 rgba(30, 31, 45, 0.12), 0 6px 14px 0 rgba(32, 33, 46, 0.12), 0 26px 26px 0 rgba(34, 35, 44, 0.1), 0 102px 41px 0 rgba(38, 39, 55, 0.02), 0 -1px 12px 0 rgba(133, 131, 225, 0.25);
@@ -351,6 +398,21 @@
     @include mixins.adaptiveValue("height", 80, 60);
   }
 
+  #counter &__counter-list-item {
+    &:not(:last-child)::after {
+      content: '';
+      display: inline-block;
+      height: mixins.toRem(50);
+      width: mixins.toRem(2);
+      background: linear-gradient(180deg, rgba(95, 100, 113, 0) 0%, #5f6471 54.51%, rgba(95, 100, 113, 0) 100%);
+      @include mixins.adaptiveValue("margin-left", 10, 8);
+    }
+
+    &:not(:last-child) {
+      @include mixins.adaptiveValue("margin-right", 10, 8);
+    }
+  }
+
   &__counter-list {
     height: 100%;
     display: flex;
@@ -358,34 +420,24 @@
     justify-content: center;
   }
 
-  &__counter-list-item {
+  &__counter-list-item,
+  &__counter-list-separator {
     display: flex;
     align-items: center;
     font-weight: 500;
     text-align: center;
     color: var(--grey-dark);
 
-    &:not(:last-child) {
-      @include mixins.adaptiveValue("margin-right", 10, 8);
-    }
-
-    &:not(:last-child)::after {
-      content: '';
-      display: inline-block;
-      height: 50px;
-      width: 2px;
-      background: linear-gradient(180deg, rgba(95, 100, 113, 0) 0%, #5f6471 54.51%, rgba(95, 100, 113, 0) 100%);
-      @include mixins.adaptiveValue("margin-left", 10, 8);
-    }
-
     @include mixins.adaptiveValue("font-size", 50, 37);
   }
 
   .digit-container {
     position: relative;
-    width: 30px;
-    height: 60px;
+    height: mixins.toRem(50);
     overflow: hidden;
+    will-change: transform;
+
+    @include mixins.adaptiveValue("width", 36, 24.8);
   }
 
   .digit {
@@ -395,8 +447,32 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    /* Увеличенное время и плавная кривая */
+    will-change: transform;
   }
 
+  /* Стили только для анимируемых цифр (первые три) */
+  .digit-container:not(.static) .digit {
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+  }
+
+  .digit-container:not(.static) .digit.current {
+    transform: translateY(0);
+    z-index: 2;
+  }
+
+  .digit-container:not(.static) .digit.next {
+    transform: translateY(100%);
+    z-index: 1;
+  }
+
+  .digit-container:not(.static) .digit.prev {
+    transform: translateY(-100%);
+    z-index: 0;
+    opacity: 1;
+  }
 
   &__row {
     border-radius: 0 0 15px 15px;
