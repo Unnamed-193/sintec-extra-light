@@ -343,11 +343,11 @@
   }
 
   &__item--1 {
-    background-image: url('img/ow/ow_item_1.svg');
+    background-image: url('../img/ow/ow_item_1.svg');
     background-position: 0px mixins.toRem(62);
 
     @media (max-width:mixins.toEm(variables.$mobile)) {
-      background-image: url('img/ow/ow_item_1_mobile.svg');
+      background-image: url('../img/ow/ow_item_1_mobile.svg');
       background-position: 0px mixins.toRem(97.2);
     }
   }
