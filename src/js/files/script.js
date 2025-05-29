@@ -147,7 +147,6 @@ function updateVideoSource() {
   if (!video) return;
 
     video.setAttribute('playsinline', '');
-    video.setAttribute('webkit-playsinline', '');
     video.setAttribute('muted', 'true'); // Обязательно для iOS
     
     video.load();
