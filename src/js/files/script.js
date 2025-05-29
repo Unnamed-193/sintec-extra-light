@@ -5,9 +5,9 @@ import Swiper from "swiper";
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import './getCurrentYear.js';
-import './gsap/hero/hero.js';
-import './gsap/components/components.js';
 import './gsap/components/circle.js';
+import './gsap/components/components.js';
+import './gsap/hero/hero.js';
 
 import 'swiper/css';
 
@@ -142,88 +142,71 @@ function createScrollbar(parent) {
   return scrollbar;
 }
 
-// function updateVideoSource() {
-//   const video = document.querySelector('.hero__video');
-//   if (!video) return;
+function updateVideoSource() {
+  const video = document.querySelector('.hero__video');
+  if (!video) return;
 
-//   const isMobile = window.innerWidth <= 480;
-//   const basePath = isMobile ? 'video/hero_video_mobile' : 'video/hero_video';
-//   const poster = isMobile ? 'img/hero/poster_mobile.webp' : 'img/hero/poster.webp';
-//   const cacheBuster = `?t=${Date.now()}`;
 
-//   const newSources = `
-//     <source src="${basePath}.mp4${cacheBuster}" type="video/mp4">
-//     <source src="${basePath}.webm${cacheBuster}" type="video/webm">
-//   `;
+    
+    video.setAttribute('playsinline', '');
+    video.setAttribute('webkit-playsinline', '');
+    video.setAttribute('muted', 'true'); // Обязательно для iOS
+    
+    video.load();
+    
+    const playPromise = video.play();
+    
+    if (playPromise !== undefined) {
+      playPromise.catch(e => {
+        // Создаем кнопку-заглушку для iOS
+        if (isIOS()) {
+          createFallbackButton(video);
+        }
+      });
+    }
+  }
 
-//   if (video.innerHTML.trim() !== newSources.trim()) {
-//     video.poster = poster;
-//     video.innerHTML = newSources;
-    
-//     // Особенность iOS: нужно явно установить playsinline
-//     video.setAttribute('playsinline', '');
-//     video.setAttribute('webkit-playsinline', '');
-//     video.setAttribute('muted', 'true'); // Обязательно для iOS
-    
-//     video.load();
-    
-//     const playPromise = video.play();
-    
-//     if (playPromise !== undefined) {
-//       playPromise.catch(e => {
-//         // Создаем кнопку-заглушку для iOS
-//         if (isIOS()) {
-//           createFallbackButton(video);
-//         }
-//       });
-//     }
-//   }
-// }
 
 // Проверка iOS
-// function isIOS() {
-//   return /iPad|iPhone|iPod/.test(navigator.userAgent) || 
-//          (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-// }
+function isIOS() {
+  return /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+         (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+}
 
 // Создаем кнопку для ручного запуска
-// function createFallbackButton(video) {
-//   const container = video.parentElement;
-//   const button = document.createElement('button');
-//   button.className = 'ios-video-fallback';
-//   button.innerHTML = '▶ Play Video';
-//   button.style.cssText = `
-//     position: absolute;
-//     top: 50%;
-//     left: 50%;
-//     transform: translate(-50%, -50%);
-//     z-index: 10;
-//     padding: 12px 24px;
-//     background: rgba(0,0,0,0.7);
-//     color: white;
-//     border: none;
-//     border-radius: 4px;
-//     cursor: pointer;
-//   `;
+function createFallbackButton(video) {
+  const container = video.parentElement;
+  const button = document.createElement('button');
+  button.className = 'ios-video-fallback';
+  button.innerHTML = '▶ Play Video';
+  button.style.cssText = `
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    padding: 12px 24px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  `;
   
-//   button.addEventListener('click', () => {
-//     video.play();
-//     button.remove();
-//   });
+  button.addEventListener('click', () => {
+    video.play();
+    button.remove();
+  });
   
-//   container.style.position = 'relative';
-//   container.appendChild(button);
-// }
+  container.style.position = 'relative';
+  container.appendChild(button);
+}
 
-// Запускаем при полной загрузке страницы
-// window.addEventListener('load', function() {
-//   updateVideoSource();
+window.addEventListener('load', function() {
+  updateVideoSource();
   
-//   // Реинициализация при изменении ориентации
-//   window.addEventListener('orientationchange', function() {
-//     setTimeout(updateVideoSource, 300);
-//   });
-// });
+
+});
 
 
 const swiper = new Swiper(".swiper", {

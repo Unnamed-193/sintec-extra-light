@@ -381,6 +381,22 @@
     @include mixins.adaptiveValue("font-size", 50, 37);
   }
 
+  .digit-container {
+    position: relative;
+    width: 30px;
+    height: 60px;
+    overflow: hidden;
+  }
+
+  .digit {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
 
   &__row {
     border-radius: 0 0 15px 15px;
@@ -790,7 +806,7 @@
     }
 
     @media (max-width:mixins.toEm(variables.$mobile)) {
-        font-size: mixins.toRem(16);
+      font-size: mixins.toRem(16);
     }
   }
 
