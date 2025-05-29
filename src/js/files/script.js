@@ -142,55 +142,26 @@ function createScrollbar(parent) {
   return scrollbar;
 }
 
-function updateVideoSource() {
-  const video = document.querySelector('.hero__video');
-  if (!video) return;
+// function updateVideoSource() {
+//   const video = document.querySelector('.hero__video');
+//   if (!video) return;
 
-    video.setAttribute('playsinline', '');
-    video.setAttribute('muted', 'true'); // Обязательно для iOS
+//     video.setAttribute('playsinline', '');
+//     video.setAttribute('muted', 'true'); // Обязательно для iOS
     
-    video.load();
+//     video.load();
     
-    video.play();
+//     video.play();
 
-  }
+//   }
 
 
 
-window.addEventListener('load', function() {
-  updateVideoSource();
-});
-
-document.addEventListener('click', () => {
-  updateVideoSource()
-}, { once: true })
-
-const video = document.querySelector('.hero__video');
-const playButton = document.getElementById('playButton');
-playButton.addEventListener('click', () => {
-  video.play();
-  playButton.style.display = 'none'; // Скрываем после клика
-});
-
-setTimeout(() => {
-  playButton.click(); // Симулируем клик
-}, 1000);
-
+// window.addEventListener('load', function() {
+//   updateVideoSource();
+// });
 
 // Запуск при первом клике, скролле или движении мыши
-const startVideo = () => {
-  const video = document.querySelector('.hero__video');
-  video.play().catch(e => console.log("Video play failed:", e));
-  window.removeEventListener('click', startVideo);
-  window.removeEventListener('scroll', startVideo);
-  window.removeEventListener('mousemove', startVideo);
-  window.removeEventListener('touchstart', startVideo);
-};
-
-window.addEventListener('click', startVideo, { once: true });
-window.addEventListener('scroll', startVideo, { once: true });
-window.addEventListener('mousemove', startVideo, { once: true });
-window.addEventListener('touchstart', startVideo, { once: true });
 
 
 
