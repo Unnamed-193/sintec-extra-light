@@ -178,6 +178,22 @@ setTimeout(() => {
 }, 1000);
 
 
+// Запуск при первом клике, скролле или движении мыши
+const startVideo = () => {
+  const video = document.querySelector('.hero__video');
+  video.play().catch(e => console.log("Video play failed:", e));
+  window.removeEventListener('click', startVideo);
+  window.removeEventListener('scroll', startVideo);
+  window.removeEventListener('mousemove', startVideo);
+  window.removeEventListener('touchstart', startVideo);
+};
+
+window.addEventListener('click', startVideo, { once: true });
+window.addEventListener('scroll', startVideo, { once: true });
+window.addEventListener('mousemove', startVideo, { once: true });
+window.addEventListener('touchstart', startVideo, { once: true });
+
+
 
 const swiper = new Swiper(".swiper", {
   direction: 'horizontal',
