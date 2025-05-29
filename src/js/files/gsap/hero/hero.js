@@ -1,7 +1,7 @@
 import gsap from "gsap";
 
 document.addEventListener("DOMContentLoaded", () => {
-  const tl = gsap.timeline({ delay: 0.5, defaults: { duration: 0.4, ease: "power1.in" } });
+  const tl = gsap.timeline({ delay: 0.7, defaults: { duration: 0.4, ease: "power1.in" } });
 
   // 1. Анимация заголовка и текста
   tl.from('.hero__title', { 
