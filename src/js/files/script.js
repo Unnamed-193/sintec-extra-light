@@ -167,13 +167,13 @@ document.addEventListener('click', () => {
 }, { once: true })
 
 const video = document.querySelector('.hero__video');
+const playButton = document.getElementById('playButton');
 playButton.addEventListener('click', () => {
   video.play();
   playButton.style.display = 'none'; // Скрываем после клика
 });
 
 setTimeout(() => {
-  const playButton = document.getElementById('playButton');
   playButton.click(); // Симулируем клик
 }, 1000);
 
