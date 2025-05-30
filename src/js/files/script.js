@@ -143,6 +143,8 @@ function createScrollbar(parent) {
 }
 
 function updateVideoSource() { 
+  console.log(1);
+  
   const video = document.querySelector('.hero__video');
   if (!video) return;
 
@@ -199,7 +201,7 @@ function createFallbackButton(video) {
     border-radius: 4px;
     cursor: pointer;
   `;
-
+}
   window.addEventListener('load', function() {
     updateVideoSource();
 
@@ -208,8 +210,6 @@ function createFallbackButton(video) {
       setTimeout(updateVideoSource, 300);
     });
   });
-
-}
 
 
 
