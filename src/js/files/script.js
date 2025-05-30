@@ -209,30 +209,7 @@ function createFallbackButton(video) {
     });
   });
 
-
-// Запуск при первом клике, скролле или движении мыши
-
+}
 
 
-// const swiper = new Swiper(".swiper", {
-//   direction: 'horizontal',
-//   modules: [Pagination],
-//   pagination: {
-//     el: '.swiper-pagination',
-//     clickable: true,
-//   },
-//   // Отключаем функциональность на больших экранах
-//   enabled: window.innerWidth < 768,
-//   spaceBetween: 15,
 
-//     // Для лучшей работы на мобильных
-//   breakpoints: {
-//     // При ширине экрана >= 768px
-//     768: {
-//       enabled: false,
-//       spaceBetween: 0,
-//     }
-//   }
-// });
-
-// Обработчик изменения размера окна
