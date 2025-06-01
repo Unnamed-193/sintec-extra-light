@@ -24,10 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (isAnimating || (isMobile && wasAnimated)) return;
     isAnimating = true;
     
-    item.style.animation = 'none';
-    setTimeout(() => {
       item.style.animation = 'bg 7s forwards linear';
-    }, 10);
     
     const startTime = performance.now();
     const totalNumbers = endNumber - startNumber;

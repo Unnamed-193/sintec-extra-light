@@ -345,6 +345,7 @@
   &__item--1 {
     background-image: url('../img/ow/ow_item_1.svg');
     background-position: 0px mixins.toRem(62);
+    animation: none;
 
     @media (max-width:mixins.toEm(variables.$mobile)) {
       background-image: url('../img/ow/ow_item_1_mobile.svg');
@@ -357,6 +358,7 @@
   &__item--2 {
     background-image: url('../img/ow/ow_item_2.svg');
     background-position: 0px mixins.toRem(79);
+    animation: none;
 
     @media (max-width:mixins.toEm(variables.$mobile)) {
       background-image: url('../img/ow/ow_item_2_mobile.svg');

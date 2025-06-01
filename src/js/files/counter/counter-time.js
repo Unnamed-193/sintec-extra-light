@@ -48,10 +48,7 @@ function animateAllDigits(start, end, duration) {
     isAnimating = true;
     
     // Сброс анимации фона перед запуском
-    item.style.animation = 'none';
-    setTimeout(() => {
       item.style.animation = 'bg 7s forwards linear';
-    }, 10);
     
     const startTime = performance.now();
     const totalNumbers = end - start;
