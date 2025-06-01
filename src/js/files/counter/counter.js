@@ -10,8 +10,8 @@ document.addEventListener('DOMContentLoaded', function() {
   let isMobile = window.innerWidth < 768;
   let wasAnimated = false; // Флаг, чтобы анимация запускалась только один раз
   
-  function easeOutExpo(t) {
-    return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+  function easeInOutCubic(t) {
+    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
   }
   
   function resetAnimation() {
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function update(currentTime) {
       const elapsed = currentTime - startTime;
       const rawProgress = Math.min(elapsed / duration, 1);
-      const easedProgress = easeOutExpo(rawProgress);
+      const easedProgress = easeInOutCubic(rawProgress);
       const currentNumber = Math.floor(startNumber + easedProgress * totalNumbers);
       
       updateDigits(currentNumber);
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
     );
     
     if (isVisible) {
-      animateCounter();
+      setTimeout(animateCounter, 1000)
     }
   }
 
