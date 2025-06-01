@@ -655,6 +655,7 @@
     transform: translateY(-50%);
     background-color: var(--grey-light);
     border-radius: mixins.toRem(15);
+    padding-right: mixins.toRem(20);
     @include mixins.adaptiveValue("border-radius", 15, 10);
     @include mixins.adaptiveValue("padding-left", 85, 42.8, variables.$tablet);
 
