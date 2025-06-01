@@ -8,6 +8,7 @@ function animateAllDigits(start, end, duration) {
   const digitItems = counterTime.querySelectorAll('.ow__counter-list-item');
   const separators = counterTime.querySelectorAll('.ow__counter-list-separator');
   let animationId;
+  let bgAnimationId;
   let isAnimating = false;
   
   // Устанавливаем разделители
@@ -39,8 +40,8 @@ function animateAllDigits(start, end, duration) {
   // Сброс только анимации (без сброса цифр)
   function resetAnimation() {
     cancelAnimationFrame(animationId);
+    cancelAnimationFrame(bgAnimationId);
     isAnimating = false;
-    item.style.animation = 'none'; // Сброс анимации фона
   }
 
   function startAnimation() {
@@ -48,10 +49,25 @@ function animateAllDigits(start, end, duration) {
     isAnimating = true;
     
     // Сброс анимации фона перед запуском
-      item.style.animation = 'bg 7s forwards linear';
     
     const startTime = performance.now();
     const totalNumbers = end - start;
+
+
+    function animateBackground(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const bgCount = isMobile ? -1000 : - 500;
+      const bgPosition = bgCount * progress; 
+      
+      item.style.backgroundPositionX = `${bgPosition}px`;
+      
+      if (progress < 1) {
+        bgAnimationId = requestAnimationFrame(animateBackground);
+      }
+    }
+
+    bgAnimationId = requestAnimationFrame(animateBackground);
     
     function update(currentTime) {
       const elapsed = currentTime - startTime;

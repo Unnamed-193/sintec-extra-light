@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const endNumber = 155000;
   const duration = 7000;
   let animationId;
+  let bgAnimationId;
   let isAnimating = false;
   let isMobile = window.innerWidth < 768;
   let wasAnimated = false; // Флаг, чтобы анимация запускалась только один раз
@@ -16,18 +17,32 @@ document.addEventListener('DOMContentLoaded', function() {
   
   function resetAnimation() {
     cancelAnimationFrame(animationId);
+    cancelAnimationFrame(bgAnimationId);
     isAnimating = false;
-    item.style.animation = 'none';
   }
   
   function animateCounter() {
     if (isAnimating || (isMobile && wasAnimated)) return;
     isAnimating = true;
     
-      item.style.animation = 'bg 7s forwards linear';
-    
     const startTime = performance.now();
     const totalNumbers = endNumber - startNumber;
+    
+    // Запускаем анимацию фона
+    function animateBackground(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const bgCount = -500;
+      const bgPosition = bgCount * progress; 
+      
+      item.style.backgroundPositionX = `${bgPosition}px`;
+      
+      if (progress < 1) {
+        bgAnimationId = requestAnimationFrame(animateBackground);
+      }
+    }
+    
+    bgAnimationId = requestAnimationFrame(animateBackground);
     
     function update(currentTime) {
       const elapsed = currentTime - startTime;
@@ -41,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
         animationId = requestAnimationFrame(update);
       } else {
         isAnimating = false;
-        wasAnimated = true; // Устанавливаем флаг после завершения анимации
+        wasAnimated = true;
       }
     }
     
@@ -104,7 +119,9 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Обработчики событий
-  item.addEventListener('mouseenter', animateCounter);
+  item.addEventListener('mouseenter', () => {
+    animateCounter();
+  });
   item.addEventListener('touchstart', animateCounter);
   item.addEventListener('mouseleave', resetAnimation);
   

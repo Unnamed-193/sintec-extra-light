@@ -344,12 +344,12 @@
 
   &__item--1 {
     background-image: url('../img/ow/ow_item_1.svg');
-    background-position: 0px mixins.toRem(62);
+    background-position-y: mixins.toRem(62);
     animation: none;
 
     @media (max-width:mixins.toEm(variables.$mobile)) {
       background-image: url('../img/ow/ow_item_1_mobile.svg');
-      background-position: 0px mixins.toRem(97.2);
+      background-position-y: mixins.toRem(97.2);
     }
   }
 
@@ -366,16 +366,16 @@
     }
   }
 
-  @keyframes bg {
-    from {
-      background-position-x: 0;
-    }
+  // @keyframes bg {
+  //   from {
+  //     background-position-x: 0;
+  //   }
 
-    to {
-      background-position-x: 500%;
-      /* Двигаем на ширину текстуры */
-    }
-  }
+  //   to {
+  //     background-position-x: 500%;
+  //     /* Двигаем на ширину текстуры */
+  //   }
+  // }
 
   &__counter-list-item-mr17 {
     margin-right: mixins.toRem(17);
