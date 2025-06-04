@@ -9,8 +9,8 @@ document.addEventListener('DOMContentLoaded', function() {
   let bgAnimationId;
   let isAnimating = false;
   let isMobile = window.innerWidth < 768;
-  let wasAnimated = false; // Флаг, чтобы анимация запускалась только один раз
-  
+  let wasAnimated = false;
+
   function easeInOutCubic(t) {
     return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
   }
@@ -19,8 +19,47 @@ document.addEventListener('DOMContentLoaded', function() {
     cancelAnimationFrame(animationId);
     cancelAnimationFrame(bgAnimationId);
     isAnimating = false;
+    
+    // Анимируем возврат к начальному значению
+    const currentNumber = getCurrentNumber();
+    if (currentNumber !== startNumber) {
+      animateToNumber(startNumber, 500); // 500ms - длительность анимации возврата
+    }
+    
+    // Сбрасываем фон
+    item.style.backgroundPositionX = '0px';
   }
   
+  function getCurrentNumber() {
+    let numberStr = '';
+    digitContainers.forEach(container => {
+      const digit = container.querySelector('.digit.current') || container.querySelector('.digit');
+      numberStr += digit ? digit.textContent : '0';
+    });
+    return parseInt(numberStr, 10);
+  }
+  
+  function animateToNumber(targetNumber, durationMs) {
+    const startNumber = getCurrentNumber();
+    const totalNumbers = targetNumber - startNumber;
+    const startTime = performance.now();
+    
+    function update(currentTime) {
+      const elapsed = currentTime - startTime;
+      const rawProgress = Math.min(elapsed / durationMs, 1);
+      const easedProgress = easeInOutCubic(rawProgress);
+      const currentNumber = Math.floor(startNumber + easedProgress * totalNumbers);
+      
+      updateDigits(currentNumber);
+      
+      if (rawProgress < 1) {
+        animationId = requestAnimationFrame(update);
+      }
+    }
+    
+    animationId = requestAnimationFrame(update);
+  }
+
   function animateCounter() {
     if (isAnimating || (isMobile && wasAnimated)) return;
     isAnimating = true;
@@ -28,7 +67,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const startTime = performance.now();
     const totalNumbers = endNumber - startNumber;
     
-    // Запускаем анимацию фона
     function animateBackground(currentTime) {
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
@@ -101,7 +139,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Функция проверки видимости элемента
   function checkVisibility() {
     if (!isMobile || wasAnimated) return;
     
@@ -114,27 +151,24 @@ document.addEventListener('DOMContentLoaded', function() {
     );
     
     if (isVisible) {
-      setTimeout(animateCounter, 1000)
+      setTimeout(animateCounter, 1000);
     }
   }
 
   // Обработчики событий
-  item.addEventListener('mouseenter', () => {
-    animateCounter();
-  });
+  item.addEventListener('mouseenter', animateCounter);
   item.addEventListener('touchstart', animateCounter);
   item.addEventListener('mouseleave', resetAnimation);
   
-  // Проверяем видимость при скролле и ресайзе
   if (isMobile) {
     window.addEventListener('scroll', checkVisibility);
     window.addEventListener('resize', checkVisibility);
-    // Проверяем сразу при загрузке
     checkVisibility();
   }
 
   return () => {
     cancelAnimationFrame(animationId);
+    cancelAnimationFrame(bgAnimationId);
     if (isMobile) {
       window.removeEventListener('scroll', checkVisibility);
       window.removeEventListener('resize', checkVisibility);

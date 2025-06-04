@@ -8,14 +8,12 @@ function animateAllDigits(start, end, duration) {
   const digitItems = counterTime.querySelectorAll('.ow__counter-list-item');
   const separators = counterTime.querySelectorAll('.ow__counter-list-separator');
   let animationId;
-  let bgAnimationId;
   let isAnimating = false;
   
   // Устанавливаем разделители
   separators[0].textContent = ' ';
   separators[1].textContent = ':';
   
-  // Форматируем число в вид XX XXX:XX
   function formatNumber(num) {
     const str = String(num).padStart(6, '0');
     return [
@@ -23,7 +21,6 @@ function animateAllDigits(start, end, duration) {
     ];
   }
   
-  // Обновляем отображение цифр
   function updateDisplay(digits) {
     digits.forEach((digit, index) => {
       if (index === 2 || index === 6) return;
@@ -32,42 +29,52 @@ function animateAllDigits(start, end, duration) {
     });
   }
 
-  // Функция плавности
   function easeOutExpo(t) {
     return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
   }
 
-  // Сброс только анимации (без сброса цифр)
+  function getCurrentNumber() {
+    const digits = Array.from(digitItems).map(item => item.textContent);
+    return parseInt(digits.slice(0, 2).join('') + digits.slice(2, 5).join('') + digits[5], 10);
+  }
+
   function resetAnimation() {
     cancelAnimationFrame(animationId);
-    cancelAnimationFrame(bgAnimationId);
     isAnimating = false;
+    
+    const currentNumber = getCurrentNumber();
+    if (currentNumber !== start) {
+      animateToNumber(start, 500);
+    }
+  }
+
+  function animateToNumber(targetNumber, durationMs) {
+    const currentNumber = getCurrentNumber();
+    const totalNumbers = targetNumber - currentNumber;
+    const startTime = performance.now();
+    
+    function update(currentTime) {
+      const elapsed = currentTime - startTime;
+      const rawProgress = Math.min(elapsed / durationMs, 1);
+      const easedProgress = easeOutExpo(rawProgress);
+      const currentValue = currentNumber + Math.floor(easedProgress * totalNumbers);
+      
+      updateDisplay(formatNumber(currentValue));
+      
+      if (rawProgress < 1) {
+        animationId = requestAnimationFrame(update);
+      }
+    }
+    
+    animationId = requestAnimationFrame(update);
   }
 
   function startAnimation() {
     if (isAnimating) return;
     isAnimating = true;
     
-    // Сброс анимации фона перед запуском
-    
     const startTime = performance.now();
     const totalNumbers = end - start;
-
-
-    function animateBackground(currentTime) {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const bgCount = isMobile ? -1000 : - 500;
-      const bgPosition = bgCount * progress; 
-      
-      item.style.backgroundPositionX = `${bgPosition}px`;
-      
-      if (progress < 1) {
-        bgAnimationId = requestAnimationFrame(animateBackground);
-      }
-    }
-
-    bgAnimationId = requestAnimationFrame(animateBackground);
     
     function update(currentTime) {
       const elapsed = currentTime - startTime;
@@ -84,56 +91,49 @@ function animateAllDigits(start, end, duration) {
       }
     }
     
-    // Устанавливаем начальное значение
     updateDisplay(formatNumber(start));
-    // Запускаем анимацию
     animationId = requestAnimationFrame(update);
   }
 
-  // Вешаем обработчики
   item.addEventListener('mouseenter', startAnimation);
   item.addEventListener('mouseleave', resetAnimation);
   
-  // Инициализируем конечное значение
   updateDisplay(formatNumber(end));
 
   return startAnimation;
 }
+const isMobile = window.innerWidth < 768;
+const startAnimation = animateAllDigits(80000, 100000, 7000);
 
-
-
-  const isMobile = window.innerWidth < 768;
-  const startAnimation = animateAllDigits(80000, 100000, 7000);
-
-  const swiper = new Swiper(".swiper", {
-    direction: 'horizontal',
-    modules: [Pagination],
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
-    enabled: isMobile,
-    spaceBetween: 15,
-    breakpoints: {
-      768: {
-        enabled: false,
-        spaceBetween: 0,
-      }
-    },
-    on: {
-      // Запускаем анимацию при переходе на второй слайд
-      slideChange: function(swiper) {
-        if (isMobile && swiper.activeIndex === 1) {
-          startAnimation();
-        }
+const swiper = new Swiper(".swiper", {
+  direction: 'horizontal',
+  modules: [Pagination],
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+  },
+  enabled: isMobile,
+  spaceBetween: 15,
+  breakpoints: {
+    768: {
+      enabled: false,
+      spaceBetween: 0,
+    }
+  },
+  on: {
+    // Запускаем анимацию при переходе на второй слайд
+    slideChange: function(swiper) {
+      if (isMobile && swiper.activeIndex === 1) {
+        startAnimation();
       }
     }
-  });
-
-  // Для мобильных запускаем сразу если второй слайд активен
-  if (isMobile && document.querySelector('.swiper-slide-active').classList.contains('ow__item--2')) {
-    startAnimation();
   }
+});
+
+// Для мобильных запускаем сразу если второй слайд активен
+if (isMobile && document.querySelector('.swiper-slide-active').classList.contains('ow__item--2')) {
+  startAnimation();
+}
 
 window.addEventListener('resize', function() {
   if (window.innerWidth < 768) {
@@ -149,4 +149,4 @@ window.addEventListener('load', () => {
   } else {
     swiper.disable();
   }
-})
+});
