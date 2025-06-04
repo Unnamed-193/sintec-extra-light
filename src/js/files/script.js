@@ -148,7 +148,7 @@ function updateVideoSource() {
   const video = document.querySelector('.hero__video');
   if (!video) return;
 
-  const isMobile = window.innerWidth <= 480;
+  const isMobile = window.innerWidth <= 479.98;
   const basePath = isMobile ? 'video/hero_video_mobile' : 'video/hero_video';
   const poster = isMobile ? 'img/hero/poster_mobile.webp' : 'img/hero/poster.webp';
   const cacheBuster = `?t=${Date.now()}`;
