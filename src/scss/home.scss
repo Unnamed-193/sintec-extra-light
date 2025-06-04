@@ -79,12 +79,8 @@
     text-align: center;
     letter-spacing: -0.02em;
 
-    @include mixins.adaptiveValue("max-width", 1000, 210);
     @include mixins.adaptiveValue("font-size", 32, 22);
 
-    // @media (max-width:mixins.toEm(variables.$laptop)) {
-    //   font-size: mixins.toRem(40);
-    // }
 
     @media (max-width:mixins.toEm(variables.$mobile)) {
       font-weight: 500;
@@ -971,7 +967,6 @@
 
     @media (max-width:mixins.toEm(variables.$mobile)) {
       flex-direction: column-reverse;
-      align-items: center;
       padding-top: mixins.toRem(13);
       padding-right: mixins.toRem(19);
     }
@@ -986,12 +981,11 @@
     }
 
     @media (max-width:mixins.toEm(variables.$mobile)) {
-      width: auto;
+      width: 100%;
       height: auto;
     }
 
     @media (max-width:mixins.toEm(variables.$mobileSmall)) {
-      width: 100%;
       height: auto;
     }
   }
@@ -1004,7 +998,7 @@
     max-width: mixins.toRem(427);
 
     @media (max-width:mixins.toEm(variables.$mobile)) {
-      max-width: mixins.toRem(308);
+      max-width: none;
     }
   }
 
