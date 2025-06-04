@@ -64,7 +64,7 @@ function setSvgWH() {
   svgs.forEach(svg=>{
     const width = svg.getAttribute('width') || svg.offsetWidth;
     const height = svg.getAttribute('height') || svg.offsetHeight;
-
+    
     const widthRem = width / 16;
     const heightRem = height / 16;
 
@@ -210,6 +210,3 @@ function createFallbackButton(video) {
       setTimeout(updateVideoSource, 300);
     });
   });
-
-
-
