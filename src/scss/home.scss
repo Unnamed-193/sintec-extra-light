@@ -18,6 +18,10 @@
     height: mixins.toRem(690);
   }
 
+  @media (max-width:mixins.toEm(variables.$mobileSmall)) {
+    @include mixins.adaptiveValue("height", 808.4, 690, variables.$mobileSmall);
+  }
+
   &__container {
     max-width: mixins.toRem(1350);
 
@@ -33,6 +37,10 @@
 
     @media (max-width:mixins.toEm(variables.$mobile)) {
       height: mixins.toRem(474);
+    }
+
+    @media (max-width:mixins.toEm(variables.$mobileSmall)) {
+      @include mixins.adaptiveValue("height", 595, 474, variables.$mobileSmall);
     }
   }
 
