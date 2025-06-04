@@ -609,6 +609,12 @@
   }
 
   &__list-item {
+    @for $i from 1 through 3 {
+      &:nth-child(#{$i}) {
+        z-index: #{4 - $i}; // Добавляем обратный порядок z-index (3, 2, 1)
+      }
+    }
+
     position: relative;
     height: mixins.toRem(113);
 
@@ -643,7 +649,6 @@
     @media (max-width:mixins.toEm(variables.$mobile)) {
       height: mixins.toRem(96);
     }
-
 
   }
 
